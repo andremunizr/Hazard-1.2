@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Badges Sample CRUD Page</title>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+            <h:panelGrid columns="3">
+                <p:outputLabel value="Name: " />
+                <p:inputText value="#{badgeBean.badge.name}" />
+                <p:outputLabel value="" />
+                
+                <p:outputLabel value="Image: " />
+                <p:inputText value="#{badgeBean.badge.image}" />
+                <p:commandButton value="Save" action="#{badgeBean.save()}" update="@form" />
+            </h:panelGrid>
+            
+            <p:dataTable value="#{badgeBean.badges}" var="badge">
+                <p:column headerText="Id">#{badge.id}</p:column>
+                <p:column headerText="Name">#{badge.name}</p:column>
+                <p:column headerText="Image">#{badge.image}</p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

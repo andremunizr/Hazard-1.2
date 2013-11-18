@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      class="html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./../resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <div>
+                    <h:graphicImage library="img" name="dice.png" styleClass="silverStar" />
+                    <span id="hazardTitle">
+                        Hazard
+                    </span>
+                </div>
+                <button id="toggle-login-button" 
+                        class="action-button  right-login-button" 
+                        value="login">login</button>
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content" style="box-shadow: none;">
+            <ui:insert name="content">
+                
+            </ui:insert>
+        </div>
+        <h:outputScript library="js" name="scripts.js" />
+    </h:body>
+
+</html>

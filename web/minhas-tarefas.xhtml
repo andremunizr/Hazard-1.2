@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+
+        <ui:composition template="./temp/index.xhtml">
+
+            <ui:define name="content">
+
+                <h:form class="underline">
+                    <ul class="menuUl">                        
+                        <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="new-task2.png" styleClass="icon" />
+                                <h:link value="nova tarefa" 
+                                        outcome="tarefas.xhtml?faces-redirect=true" 
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="my-tasks2.png" styleClass="icon" />
+                                <h:link value="minhas tarefas" 
+                                        outcome="minhas-tarefas.xhtml?faces-redirect=true"
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
+                    </ul>
+                </h:form>
+
+                <section class="advice-center">
+                    <h:outputText rendered="#{empty loggBean.sessionUser.tasks}"
+                                  value="Nenhuma tarefa a ser exibida" />
+                </section>
+
+                <ui:repeat value="#{loggBean.sessionUser.tasks}" var="task">
+
+                    <section class="taskItems">
+
+                        <h:graphicImage styleClass="avatar-display" 
+                                        library="img" 
+                                        name="maleIcon.png" 
+                                        rendered="#{userBean.findOne( task.authorId ).sexo == 'masculino' and 
+                                                    userBean.findOne( task.authorId ).image == null}" />
+
+                        <h:graphicImage styleClass="avatar-display" 
+                                        library="img" 
+                                        name="femaleIcon.png" 
+                                        rendered="#{userBean.findOne( task.authorId ).sexo == 'feminino' and 
+                                                    userBean.findOne( task.authorId ).image == null}" />
+
+                        <h:graphicImage styleClass="avatar-display" 
+                                        library="avImg" 
+                                        name="#{userBean.findOne( task.authorId ).image}" 
+                                        rendered="#{userBean.findOne( task.authorId ).image != null}" />  
+
+                        <section class="task-list-span msgSender">
+                            <h:outputText value="#{task.author}" />
+                        </section>
+
+                        <section class="task-list-span desc-task">
+                            <h:form>
+                                <h:link outcome="detalhar-tarefa.xhtml" value="#{task.description}">
+                                    <f:param name="faces-redirect" value="true" />
+                                    <f:param name="id" value="#{task.id}" />
+                                </h:link>
+                            </h:form>
+                        </section>
+
+                        <section class="task-list-span date-task">
+                            <h:outputText value="#{task.releaseDate}">
+                                <f:convertDateTime dateStyle="long" pattern="d MMM h:mm" />
+                            </h:outputText>                        
+                        </section>
+
+                        <section class="task-list-span status-task #{task.status}">
+                            <h:outputText value="#{task.status}" />
+                        </section>
+
+                    </section>
+                </ui:repeat>
+
+                <script>
+                    document.title = 'Minhas Tarefas';
+                </script>  
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>

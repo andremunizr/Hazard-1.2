@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./temp/index.xhtml">
+
+            <ui:define name="content">    
+
+                <h:form class="underline">
+                    <ul class="menuUl">                        
+                        <li>
+                            <span class="headerTitle">
+                                <h:commandLink value="perfil" action="profile.xhtml?faces-redirect=true" />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="headerTitle">
+                                <h:commandLink value="editar" action="profile-edit.xhtml?faces-redirect=true" />
+                            </span>
+                        </li>
+                    </ul>
+                </h:form>
+                <br />
+                <h:graphicImage styleClass="avatar-img" 
+                                library="img" 
+                                name="maleIcon.png" 
+                                rendered="#{loggBean.sessionUser.sexo == 'masculino' and loggBean.sessionUser.image == null}" />
+
+                <h:graphicImage styleClass="avatar-img" 
+                                library="img" 
+                                name="femaleIcon.png" 
+                                rendered="#{loggBean.sessionUser.sexo == 'feminino' and loggBean.sessionUser.image == null}" />
+
+                <h:graphicImage styleClass="avatar-img" 
+                                library="avImg" 
+                                name="#{loggBean.sessionUser.image}" 
+                                rendered="#{loggBean.sessionUser.image != null}" />   
+
+                <article class="profile-info-cube">
+                    <strong>
+                        <h:outputText value="#{loggBean.sessionUser.name}" />
+                    </strong>
+                </article>
+                <article class="profile-info-cube profile-info-detail">
+                    <h:outputText value="#{loggBean.sessionUser.employ}" />
+                </article>
+                <article class="profile-info-cube profile-info-detail">
+                    <h:outputText value="#{loggBean.sessionUser.company}" />
+                </article>
+                <div class="about">
+                    <span class="headerTitle">Sobre</span>
+                    <p>
+                        <h:outputText value="#{loggBean.sessionUser.about}" />
+                    </p>
+                </div>
+                <div class="profile-info-bar">
+                    <span class="span-info-bar">
+                        <strong>tarefas completas:</strong> 34 
+                    </span> |
+                    <span class="span-info-bar">
+                        <strong>insígnias:</strong> 20
+                    </span> |
+                    <span class="span-info-bar">
+                        <strong>bla bla bla:</strong> 100
+                    </span> 
+                </div>
+                <div class="badges-container">
+
+                    <br />
+                    <span class="headerTitle">
+                        <h:outputText value="Insígnias" />
+                    </span>
+                    <br />
+                    <br />
+
+                    <ui:repeat value="#{loggBean.sessionUser.badges}" var="badge">
+                        <div class="badges-face">
+                            <h:graphicImage library="avImg" 
+                                            name="#{badge.image}" 
+                                            title="#{badge.name}" />
+                        </div>
+                    </ui:repeat>
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>

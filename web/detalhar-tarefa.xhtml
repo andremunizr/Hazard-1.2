@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./temp/index.xhtml">
+
+            <ui:define name="content">                
+                <h:form styleClass="underline">
+                    <ul class="menuUl">                        
+                        <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="new-task2.png" styleClass="icon" />
+                                <h:link value="nova tarefa" 
+                                        outcome="tarefas.xhtml?faces-redirect=true" 
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="my-tasks2.png" styleClass="icon" />
+                                <h:link value="minhas tarefas" 
+                                        outcome="minhas-tarefas.xhtml?faces-redirect=true"
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
+                    </ul>
+                </h:form>
+
+                <p class="headerTitle">
+                    detalhar tarefa
+                </p>
+
+                <p class="grey-text">
+                    <span style="color:#000">Por </span>
+                    #{taskBean.findOne(param.id).author}
+                    <span class="float-right grey-text margin-left">
+                        Fim: <h:outputText value="#{taskBean.findOne(param.id).finishDate}">
+                            <f:convertDateTime dateStyle="long" pattern="d MMMM" />
+                        </h:outputText>
+                    </span>        
+
+                    <span class="float-right grey-text margin-left">
+                        Início: <h:outputText value="#{taskBean.findOne(param.id).releaseDate}">
+                            <f:convertDateTime dateStyle="long" pattern="d MMMM" />
+                        </h:outputText>
+                    </span>
+
+                </p>                
+                <section class="task-desc">
+                    #{taskBean.findOne(param.id).description}
+                </section>
+
+                <br />
+                <section class="task-list-span status-task #{taskBean.findOne(param.id).status}">
+                    <h:outputText value="#{taskBean.findOne(param.id).status}" />
+                </section>
+
+                <p class="underline"></p>
+
+                <p class="headerTitle" id="commentTitle" style="cursor: pointer">
+                    comentários 
+                    <h:outputText value="(#{taskBean.findOne( param.id ).comments.size()})" />
+                </p>
+
+                <h:dataTable style="width:97%; display: none;" 
+                             value="#{taskBean.findOne( param.id ).comments}" 
+                             styleClass="comments-datatable"
+                             var="comment">
+                    <h:column>
+
+                        <section class="grey-text grey-text margin-left">
+                            <span style="float: left">#{comment.author}</span>
+                            <span class="float-right">
+                                <h:outputText value="#{comment.date}">
+                                    <f:convertDateTime dateStyle="long" pattern="d MMMM HH:mm" />
+                                </h:outputText>
+                            </span>
+                        </section>                        
+                        <section class="clear comment-text">
+                            <p>
+                                <h:outputText value="#{comment.text}" />
+                            </p>
+                        </section>
+                    </h:column>
+                </h:dataTable>
+
+                <p class="underline"></p>
+
+                <h:panelGrid rendered="#{taskBean.findOne( param.id ).status != 'concluída' }">
+                    <p class="headerTitle" id="edit-task-title">
+                        editar tarefa
+                    </p>
+                </h:panelGrid>
+
+                <section class="edit-task-box">
+                    <h:form rendered="#{taskBean.findOne( param.id ).status != 'concluída' }">
+                        <h:panelGrid columns="1">
+
+                            <h:outputText value="Status:" />
+                            <p:selectOneMenu value="#{taskBean.task.status}">
+                                <f:selectItems value="#{optionsMenu.status}" />
+                            </p:selectOneMenu>
+
+                            <h:outputText value="Novo comentário:" />
+                            <p:inputTextarea cols="80" 
+                                             value="#{taskBean.comment.text}"
+                                             required="true"
+                                             requiredMessage="escreva o texto do comentário" />
+
+                            <h:commandButton styleClass="action-button"
+                                             actionListener="#{taskBean.edit( param.id )}"
+                                             action="minhas-tarefas.xhtml?faces-redirect=true"
+                                             value="salvar" >
+                                <f:param name="id" value="#{param.id}" />
+                            </h:commandButton>
+
+                        </h:panelGrid>
+                    </h:form>
+                </section>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

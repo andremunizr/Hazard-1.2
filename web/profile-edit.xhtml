@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+
+        <ui:composition template="./temp/index.xhtml">
+            <ui:define name="content">
+
+                <h:form class="underline">
+                    <ul class="menuUl">                        
+                        <li>
+                            <span class="headerTitle">
+                                <h:commandLink value="perfil" action="profile.xhtml?faces-redirect=true" />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="headerTitle">
+                                <h:commandLink value="editar" action="profile-edit.xhtml?faces-redirect=true" />
+                            </span>
+                        </li>
+                    </ul>
+                </h:form>
+
+                <div class="profile-edit-box">
+                    <span class="headerTitle edit-box-title"> editar perfil </span>
+
+                    <h:graphicImage library="img" 
+                                    name="maleIcon.png" 
+                                    rendered="#{loggBean.sessionUser.sexo == 'masculino' and loggBean.sessionUser.image == null}" 
+                                    styleClass="profile-edit-img" />
+                    
+                    <h:graphicImage library="img" 
+                                    name="femaleIcon.png" 
+                                    rendered="#{loggBean.sessionUser.sexo == 'feminino' and loggBean.sessionUser.image == null}"
+                                    styleClass="profile-edit-img" />
+                    
+                    <h:graphicImage library="avImg" 
+                                    name="#{loggBean.sessionUser.image}" 
+                                    styleClass="profile-edit-img" 
+                                    rendered="#{loggBean.sessionUser.image != null}" />
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <h:outputLabel value="Nome:" />
+                            <p:inputText size="40" value="#{loggBean.sessionUser.name}"/>
+                            <h:outputLabel value="Ocupação:" />
+                            <p:inputText size="40" value="#{loggBean.sessionUser.employ}" />
+                            <h:outputLabel value="Compania:" />
+                            <p:inputText  size="40" value="#{loggBean.sessionUser.company}" />
+                            <h:outputLabel value="Sobre:" />
+                            <p:inputTextarea cols="42" value="#{loggBean.sessionUser.about}" />
+                            <h:commandButton styleClass="action-button search-button left-recue" 
+                                             action="profile.xhtml?faces-redirect=true"
+                                             actionListener="#{userBean.save( loggBean.sessionUser )}"
+                                             value="salvar"/>
+                        </h:panelGrid>
+                    </h:form>                    
+                    <hr />
+
+                    <span class="headerTitle edit-box-title"> editar foto </span>
+                    <h:form enctype="multipart/form-data" style="margin-top: 17px;">
+                        <p:fileUpload value="#{beanUpload.file}"  
+                                      mode="simple" update="growl" />
+                        <h:commandButton value="enviar"
+                                       actionListener="#{beanUpload.upload()}" />  
+                        <p:growl id="growl" showDetail="true"/>
+                    </h:form>
+
+                </div>
+
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

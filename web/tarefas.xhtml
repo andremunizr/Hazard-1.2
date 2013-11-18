@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+
+        <ui:composition template="./temp/index.xhtml">
+
+            <ui:define name="content">
+
+                <h:form>
+                    <ul class="menuUl">                        
+                        <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="new-task2.png" styleClass="icon" />
+                                <h:link value="nova tarefa" 
+                                        outcome="tarefas.xhtml?faces-redirect=true" 
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="my-tasks2.png" styleClass="icon" />
+                                <h:link value="minhas tarefas" 
+                                        outcome="minhas-tarefas.xhtml?faces-redirect=true"
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
+                    </ul>
+                </h:form>
+
+                <div class="profile-edit-box">
+                    <span class="headerTitle edit-box-title">
+                        nova tarefa
+                    </span>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Descrição:" />
+                            <p:inputText size="40" 
+                                         value="#{taskBean.task.description}"
+                                         required="true"
+                                         requiredMessage="Descreva a tarefa." />
+
+                            <h:outputLabel value="Inicio:" />
+                            <p:calendar mode="popup" size="10" 
+                                        value="#{taskBean.task.releaseDate}"
+                                        required="true"
+                                        requiredMessage="Escolha a data de início da tarefa." />
+
+                            <h:outputLabel value="Fim:" />
+                            <p:calendar mode="popup" 
+                                        size="10" 
+                                        value="#{taskBean.task.finishDate}"
+                                        required="true"
+                                        requiredMessage="Escolha a data final para a tarefa." />
+
+                            <h:outputLabel value="Responsável:" />
+                            <p:selectOneMenu value="#{taskBean.responsableId}"
+                                             required="true" >
+                                <f:selectItems value="#{userBean.users}" 
+                                               var="user"                                               
+                                               itemLabel="#{user.name}"
+                                               itemValue="#{user.id}" />
+                            </p:selectOneMenu>
+
+                            <p:commandButton action="#{taskBean.save()}"
+                                             styleClass="action-button search-button" 
+                                             value="salvar"
+                                             update="@form" />
+                        </h:panelGrid>
+                        <p:growl />
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

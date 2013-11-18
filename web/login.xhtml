@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">    
+    <body>
+
+        <ui:composition template="./temp/login.xhtml">
+            <ui:define name="content">
+                <div class="loginBox">
+                    <div class="logTitle">Bem vindo!</div>
+                    <div class="logPicture">
+                        <h:graphicImage library="img" name="evil-toddler.jpg" />
+                    </div>
+                    <div class="logForm">
+                        <h:form>
+                            
+                            <p:growl id="growl" showDetail="true" />
+                            
+                            <h:panelGrid columns="1">
+                                <h:outputLabel value="e-mail" />
+                                <p:inputText value="#{loggBean.sessionUser.email}" styleClass="focusable"/>
+                                <h:outputLabel value="senha" />
+                                <p:password value="#{loggBean.sessionUser.password}" />
+                                <p:commandButton action="#{loggBean.login()}"
+                                                 styleClass="action-button log-button" 
+                                                 value="entrar" 
+                                                 update="growl @form" />
+                            </h:panelGrid>
+                        </h:form>                        
+                    </div>
+                </div>
+                <div class="welcome" id="welcome">
+                    <p>
+                    Nulla congue dolor ac urna ornare aliquet. Fusce convallis blandit turpis, vitae tristique diam. 
+                    Curabitur vitae pretium leo. Praesent hendrerit vestibulum eros sed pellentesque. 
+                    Nam nec nibh quam. Fusce tellus tortor, tempus sit amet lacinia in, accumsan ut dui. 
+                    Maecenas nec diam porttitor libero fermentum pretium. Sed sagittis, dui consectetur iaculis egestas, 
+                    nibh orci lobortis mauris, eget sagittis nulla ante at eros. 
+                    Vestibulum facilisis justo ac arcu volutpat elementum. 
+                    Curabitur molestie vehicula nisl, id consequat orci dictum quis. 
+                    Sed ornare tortor mauris. Sed blandit, ligula tempor euismod vestibulum,
+                    tellus nulla sollicitudin nulla, vitae laoreet sem turpis at ligula.
+                    Nullam posuere ante non elit iaculis fringilla.
+                    </p>
+                    <p>
+                    Nulla congue dolor ac urna ornare aliquet. Fusce convallis blandit turpis, vitae tristique diam. 
+                    Curabitur vitae pretium leo. Praesent hendrerit vestibulum eros sed pellentesque. 
+                    Nam nec nibh quam. Fusce tellus tortor, tempus sit amet lacinia in, accumsan ut dui. 
+                    Maecenas nec diam porttitor libero fermentum pretium. Sed sagittis, dui consectetur iaculis egestas, 
+                    nibh orci lobortis mauris, eget sagittis nulla ante at eros. 
+                    Vestibulum facilisis justo ac arcu volutpat elementum. 
+                    Curabitur molestie vehicula nisl, id consequat orci dictum quis. 
+                    Sed ornare tortor mauris. Sed blandit, ligula tempor euismod vestibulum,
+                    tellus nulla sollicitudin nulla, vitae laoreet sem turpis at ligula.
+                    Nullam posuere ante non elit iaculis fringilla.
+                    </p>
+                    <p>
+                    Nulla congue dolor ac urna ornare aliquet. Fusce convallis blandit turpis, vitae tristique diam. 
+                    Curabitur vitae pretium leo. Praesent hendrerit vestibulum eros sed pellentesque. 
+                    Nam nec nibh quam. Fusce tellus tortor, tempus sit amet lacinia in, accumsan ut dui. 
+                    Maecenas nec diam porttitor libero fermentum pretium. Sed sagittis, dui consectetur iaculis egestas, 
+                    nibh orci lobortis mauris, eget sagittis nulla ante at eros. 
+                    Vestibulum facilisis justo ac arcu volutpat elementum. 
+                    Curabitur molestie vehicula nisl, id consequat orci dictum quis. 
+                    Sed ornare tortor mauris. Sed blandit, ligula tempor euismod vestibulum,
+                    tellus nulla sollicitudin nulla, vitae laoreet sem turpis at ligula.
+                    Nullam posuere ante non elit iaculis fringilla.
+                    </p>
+                    <p>
+                    Pellentesque sit amet volutpat felis. Phasellus et ante quis libero suscipit ornare nec non magna.
+                    Quisque rutrum molestie turpis, et suscipit leo posuere feugiat. 
+                    Pellentesque sagittis ipsum nisl, sit amet scelerisque purus vestibulum ut.
+                    Nullam rhoncus dictum urna in interdum. Nam luctus vestibulum justo, 
+                    non semper justo sollicitudin ut. Ut malesuada dui quis neque ullamcorper placerat. 
+                    Aenean id vulputate sem, in venenatis nisi. Nulla facilisi. Suspendisse potenti.
+                    </p>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
