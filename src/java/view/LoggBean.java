@@ -15,6 +15,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import model.Notification;
+import model.Task;
 import model.User;
 
 @Named(value = "loggBean")
@@ -114,4 +115,17 @@ public class LoggBean implements Serializable {
         
         return sessionUser.getNotifications();
     }
+    
+    public Integer getCompletedTasks(){
+        
+        Integer completed = 0;
+        
+        for( Task t : sessionUser.getTasks()){
+            
+            if( t.getStatus().equals( "concluída" ))
+                completed += 1;            
+        }
+        return completed;
+    }
+    
 }

@@ -59,10 +59,12 @@
                 </div>
                 <div class="profile-info-bar">
                     <span class="span-info-bar">
-                        <strong>tarefas completas:</strong> 34 
+                        <strong>tarefas completas:</strong> 
+                        <h:outputText value=" #{loggBean.getCompletedTasks()}" />
                     </span> |
                     <span class="span-info-bar">
-                        <strong>insígnias:</strong> 20
+                        <strong>insígnias:</strong> 
+                        <h:outputText value=" #{loggBean.sessionUser.badges.size()}" />
                     </span> |
                     <span class="span-info-bar">
                         <strong>bla bla bla:</strong> 100
