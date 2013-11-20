@@ -112,6 +112,10 @@ public class TaskBean {
         Task uTask = (Task) controller.findOne(Task.class, id);
         uTask.setStatus(task.getStatus());
         
+        if( "concluída".equals( uTask.getStatus() )){
+            uTask.setCompleteDate( Calendar.getInstance().getTime() );
+        }
+        
         responsable = findResponsable( uTask.getResponsableId() );
         
         if (!("").equals(comment.getText()))
@@ -132,7 +136,6 @@ public class TaskBean {
                 break;
             }
         }
-
         controller.saveDocument(Task.class, uTask);
 
         try {

@@ -58,6 +58,7 @@
     /*background-color: #ece3a5; */    
     padding: 0 5px;
     width: 250px;
+    min-height: 386px;
     box-shadow: 0 0 6px #aaa;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;    
@@ -107,7 +108,7 @@
 }
 
 #content{
-    height: 410px;
+    height: 396px;
     max-height: 410px;
     min-height: 396px;
     box-shadow: 0 0 6px #aaa;
@@ -613,7 +614,7 @@
 
 .comment-text{
     display: inline-table;
-    margin-left: -82px;
+    margin-left: -27px;
     margin-top: 5px;
 }
 

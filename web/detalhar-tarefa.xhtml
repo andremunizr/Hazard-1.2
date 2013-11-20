@@ -59,6 +59,12 @@
                 <br />
                 <section class="task-list-span status-task #{taskBean.findOne(param.id).status}">
                     <h:outputText value="#{taskBean.findOne(param.id).status}" />
+                    <h:outputText value=" em "
+                                  rendered="#{taskBean.findOne(param.id).status == 'concluída'}" />
+                    <h:outputText value="#{taskBean.findOne(param.id).completeDate}"
+                                  rendered="#{taskBean.findOne(param.id).status == 'concluída'}" >
+                            <f:convertDateTime dateStyle="long" pattern="d MMMM HH:mm" />
+                    </h:outputText>
                 </section>
 
                 <p class="underline"></p>

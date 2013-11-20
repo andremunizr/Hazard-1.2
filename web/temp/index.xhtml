@@ -30,16 +30,6 @@
                             </section>
                         </li>
                         <li>
-                            <h:graphicImage library="img" name="002-tasks.png" />
-                            <section>
-                                <h:form>
-                                    <h:link styleClass="menu-link" 
-                                            outcome="minhas-tarefas.xhtml?faces-redirect=true" 
-                                            value="Tarefas" />
-                                </h:form>
-                            </section>
-                        </li>
-                        <li>
                             <h:graphicImage library="img" name="003-profile.png" />
                             <section>
                                 <h:form>
@@ -50,6 +40,16 @@
                             </section>
                         </li>
                         <li>
+                            <h:graphicImage library="img" name="002-tasks.png" />
+                            <section>
+                                <h:form>
+                                    <h:link styleClass="menu-link" 
+                                            outcome="minhas-tarefas.xhtml?faces-redirect=true" 
+                                            value="Tarefas" />
+                                </h:form>
+                            </section>
+                        </li>
+                        <li>                        
                             <h:graphicImage library="img" name="004-exit.png" />
                             <section>
                                 <h:form>
@@ -190,7 +190,7 @@
                         </div>
                     </ui:insert>
                 </div>
-                <div id="content" class="right_content">
+                <div id="content" class="right_content" style="display:none">
                     <ui:insert name="content">
 
                     </ui:insert>
@@ -266,6 +266,11 @@
         </section>
 
         <h:outputScript library="js" name="scripts.js" />
+        <script>
+            $( document ).ready( function(){
+                $( '#content' ).fadeIn();
+            } );
+        </script>
     </h:body>
 
 </html>

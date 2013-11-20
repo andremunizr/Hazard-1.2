@@ -13,13 +13,19 @@
                 <h:form class="underline">
                     <ul class="menuUl">                        
                         <li>
-                            <span class="headerTitle">
-                                <h:commandLink value="perfil" action="profile.xhtml?faces-redirect=true" />
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="profile.png"  styleClass="icon" />
+                                <h:link value="perfil" 
+                                        outcome="profile.xhtml?faces-redirect=true"
+                                        styleClass="icon-link" />
                             </span>
                         </li>
                         <li>
-                            <span class="headerTitle">
-                                <h:commandLink value="editar" action="profile-edit.xhtml?faces-redirect=true" />
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="profile-edit.png"  styleClass="icon" />
+                                <h:link value="editar" 
+                                        outcome="profile-edit.xhtml?faces-redirect=true"
+                                        styleClass="icon-link" />
                             </span>
                         </li>
                     </ul>
