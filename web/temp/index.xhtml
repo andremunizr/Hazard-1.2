@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -75,14 +76,14 @@
                         <h:outputText value="#{loggBean.sessionUser.name}" />
                     </span>
                     <ul class="topUl">                        
-                     <!--   <li>
-                            <section id="menu-button">
-                                <span class="first-icon-menu menu-icons">
-                                    <h:graphicImage styleClass="img-top-menu" library="img" name="menu-i.png" />
-                                </span>
-                            </section>
-                        </li> -->
-                       <li>
+                        <!--   <li>
+                               <section id="menu-button">
+                                   <span class="first-icon-menu menu-icons">
+                                       <h:graphicImage styleClass="img-top-menu" library="img" name="menu-i.png" />
+                                   </span>
+                               </section>
+                           </li> -->
+                        <li>
                             <h:form>
                                 <h:commandLink styleClass="first-icon-menu menu-icons">
                                     <h:graphicImage styleClass="img-top-menu" library="img" name="gear.png" />
@@ -130,12 +131,21 @@
                                                         name="#{notif.picture}"
                                                         rendered="#{notif.sourceType != 'TASK'}" />
 
-                                        <h:link styleClass="white-link" 
-                                                outcome="#{notif.link}"
-                                                value="#{notif.text}" />
+                                        <section class="notif-box">
+                                            <p>
+                                                <h:commandLink styleClass="white-link" 
+                                                               action="#{ loggBean.setRead( notif ) }"     
+                                                               value="#{ notif.text }">
+                                                </h:commandLink>
+                                            </p>
 
-                                        <h:commandLink value="x" 
-                                                       styleClass="notif-delete" />                                        
+                                            <p>
+                                                <h:outputText value="#{notif.date}">
+                                                    <f:convertDateTime dateStyle="long" pattern="d MMMM HH:mm" />
+                                                </h:outputText>
+                                            </p>    
+
+                                        </section>
                                     </h:form>
                                 </li>
                             </ui:repeat>
@@ -182,7 +192,9 @@
                             <ul class="equipList">
                                 <ui:repeat value="#{userBean.users}" var="user">
                                     <li>
-                                        <h:graphicImage library="avImg" name="#{user.image}" />
+                                        <h:graphicImage library="avImg" 
+                                                        name="#{user.image}" 
+                                                        styleClass="group-av-img" />
                                         <h:outputText value="#{user.name}" />
                                     </li>
                                 </ui:repeat>
@@ -267,9 +279,9 @@
 
         <h:outputScript library="js" name="scripts.js" />
         <script>
-            $( document ).ready( function(){
-                $( '#content' ).fadeIn();
-            } );
+            $(document).ready(function() {
+                $('#content').fadeIn();
+            });
         </script>
     </h:body>
 

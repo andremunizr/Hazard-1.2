@@ -353,9 +353,12 @@
     width: 40px;
     height: 40px;
     border-right: 1px solid #aaa;
-    vertical-align: middle;
-    margin-right: 5px;  
     background-color: #fff;
+}
+
+.group-av-img{
+    vertical-align: middle;
+    margin-right: 5px;
 }
 
 .welcome{
@@ -741,10 +744,33 @@
     font-weight: bold;
 }
 
+.notif-box{
+    display: inline-block;
+    width: 180px;
+    padding: 4px;
+    text-overflow: ellipsis!important;
+    white-space: nowrap!important;
+    overflow: hidden!important;  
+}
+
+.notif-box p{
+    margin: 3px 0;
+}
+
+.notif-box p:nth-child(1){
+    font-size: 12px;      
+    margin-top: 4px;
+}
+
+.notif-box p:nth-child(2){
+    font-size: 10px;
+    color: #848481;
+}
+
 .notif-delete{
-    position: absolute;
-    font-weight: bold;
-    left: 229px;
+    float: right;
+    margin-top: -40px;
+    padding-right: 5px;
 }
 
 .notif-delete:hover{
@@ -787,4 +813,8 @@
 .menu-link:hover{
     color: #fff!important;
     text-decoration: none!important;
+}
+
+.wide-select-menu{
+    width: 200px;
 }

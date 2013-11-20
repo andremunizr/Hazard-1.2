@@ -1,6 +1,7 @@
 
 package model;
 
+import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
@@ -16,9 +17,14 @@ public class Notification{
     private String sourceId;
     private String sourceType;
     private boolean read = false;
+    private Date date;
     
     public Notification(){}
-
+    
+    public Notification(Date date){
+        this.date = date;
+    }
+    
     public String getId() {
         return _id;
     }
@@ -79,6 +85,14 @@ public class Notification{
         this.read = read;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

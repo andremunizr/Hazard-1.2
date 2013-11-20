@@ -3,6 +3,7 @@ package view;
 
 import controller.MainController;
 import java.net.UnknownHostException;
+import java.util.Collections;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -58,7 +59,11 @@ public class UserBean {
     
     public void save(User user) throws UnknownHostException{
         
+        Collections.reverse( user.getNotifications() );
+        
         controller.saveDocument( User.class, user );        
+        
+        Collections.reverse( user.getNotifications() );
     }
     
     public User findOne( String objectId ) throws UnknownHostException{

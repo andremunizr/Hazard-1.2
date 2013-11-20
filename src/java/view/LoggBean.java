@@ -14,6 +14,7 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import model.Notification;
 import model.Task;
 import model.User;
@@ -30,14 +31,15 @@ public class LoggBean implements Serializable {
     private UserBean bean;
     private User sessionUser;
 
-    public LoggBean(){}
+    public LoggBean() {
+    }
 
     public User getSessionUser() {
         return sessionUser;
     }
 
     public void setSessionUser(User sessionUser) {
-                
+
         this.sessionUser = sessionUser;
     }
 
@@ -49,23 +51,21 @@ public class LoggBean implements Serializable {
     public String login() throws UnknownHostException {
 
         User holdUser = (User) controller.findOneByAttr(User.class, "email", sessionUser.getEmail());
-                
+
         if (holdUser != null) {
             if (canLogin(sessionUser, holdUser)) {
-                
-                Collections.reverse( holdUser.getNotifications() );
-                
+
+                Collections.reverse(holdUser.getNotifications());
+
                 setSessionUser(holdUser);
                 return "index.xhtml?faces-redirect=true";
-            } 
-            else{
-                setSessionUser( new User() );
-                
+            } else {
+                setSessionUser(new User());
+
                 FacesContext context = FacesContext.getCurrentInstance();
                 context.addMessage(null, new FacesMessage("Erro", "Senha incorreta!"));
             }
-        } 
-        else{
+        } else {
             setSessionUser(new User());
 
             FacesContext context = FacesContext.getCurrentInstance();
@@ -79,53 +79,62 @@ public class LoggBean implements Serializable {
         return set.getPassword().equals(found.getPassword())
                 && set.getEmail().equals(found.getEmail());
     }
-    
-    public User save(User user) throws UnknownHostException{
-        bean.save( user );
+
+    public User save(User user) throws UnknownHostException {
+        bean.save(user);
         return user;
     }
-    
-    public String logout() throws IOException{
+
+    public String logout() throws IOException {
         return loginController.logout();
     }
-    
-    public String setRead( Notification notif ) throws UnknownHostException{
-        
-        for(Notification n : sessionUser.getNotifications()){
+
+    public String setRead( Notification notif ) throws UnknownHostException {
+   
+        for (Notification n : sessionUser.getNotifications()) {
             
-            System.out.println("Id na notif:" + n.getId());
-            System.out.println("Id da n.pag:" + notif.getId());
-            
-            try{                
-                if( n.getId().equals(notif.getId()) ){
+            try {
+                if (n.getId().equals( notif.getId() )) {
+                    
                     n.setRead(true);
+                    bean.save( sessionUser );
                     break;
                 }
-            }catch( NullPointerException e ){
+            } catch ( NullPointerException e ){
                 e.getMessage();
             }
         }
-        
-        bean.save( sessionUser );
-        return notif.getLink();
+        return notif.getLink(); 
     }
-    
-    public List<Notification> getLastNotifications(){
-        Collections.reverse( sessionUser.getNotifications() );
-        
+
+    public List<Notification> getLastNotifications() {
+        Collections.reverse(sessionUser.getNotifications());
+
         return sessionUser.getNotifications();
     }
-    
-    public Integer getCompletedTasks(){
-        
+
+    public Integer getCompletedTasks() {
+
         Integer completed = 0;
-        
-        for( Task t : sessionUser.getTasks()){
-            
-            if( t.getStatus().equals( "concluída" ))
-                completed += 1;            
+
+        for (Task t : sessionUser.getTasks()) {
+
+            if (t.getStatus().equals("concluída")) {
+                completed += 1;
+            }
         }
         return completed;
     }
-    
+
+    public void removeNot( Notification notif ) throws UnknownHostException{
+        System.out.println("remove notification");
+        for( Notification f : sessionUser.getNotifications() ){
+            
+            if( f.equals( notif ) ){
+                sessionUser.getNotifications().remove( f );
+                bean.save( sessionUser );
+                break;
+            }            
+        }        
+    }    
 }

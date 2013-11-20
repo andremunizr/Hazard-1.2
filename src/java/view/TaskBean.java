@@ -97,19 +97,19 @@ public class TaskBean {
         controller.saveDocument(Task.class, task);
 
         buildNotification( NotificationSource.TASK, task.getId() );
-
-        buildResponsable();
-        controller.saveDocument(User.class, responsable);
-
+        
         notBean.setNotification(taskNotification);
         notBean.save();
+        
+        buildResponsable();
+        controller.saveDocument(User.class, responsable);
 
         setTask(new Task());
     }
 
     public void edit(String id) throws UnknownHostException {
         
-        Task uTask = (Task) controller.findOne(Task.class, id);
+        Task uTask = (Task) controller.findOne( Task.class, id );
         uTask.setStatus(task.getStatus());
         
         if( "concluída".equals( uTask.getStatus() )){
@@ -118,28 +118,29 @@ public class TaskBean {
         
         responsable = findResponsable( uTask.getResponsableId() );
         
-        if (!("").equals(comment.getText()))
-            uTask.getComments().add(buildComment(comment.getText()));
+        if ( !("").equals( comment.getText() ) )
+            uTask.getComments().add( buildComment( comment.getText() ) );
 
         if( testFirstTask( uTask )){      
             buildNotification( BadgeEnum.FIRST_TASK, id );
+            logBean.getSessionUser().getNotifications().add( taskNotification );
             notBean.setNotification( taskNotification );
             notBean.save();
             controller.saveDocument( User.class, responsable );
         }
         
-        for (Task t : logBean.getSessionUser().getTasks()) {
+        for (Task t : logBean.getSessionUser().getTasks()){
 
             if (t.getId().equals(uTask.getId())) {
                 t.setStatus(task.getStatus());
-                t.getComments().add(buildComment(comment.getText()));
+                t.getComments().add( buildComment( comment.getText() ) );
                 break;
             }
         }
         controller.saveDocument(Task.class, uTask);
 
         try {
-            controller.saveDocument(User.class, logBean.getSessionUser());
+            controller.saveDocument( User.class, logBean.getSessionUser() );
         } catch (EJBException e) {
             System.out.println("Erro ao persistir objeto.");
             System.out.println(e.getMessage());
@@ -198,12 +199,11 @@ public class TaskBean {
             }
         }
     }
-
+     
     private void buildNotification( Enum srcType, String id ) throws UnknownHostException {
                 
-        taskNotification = new Notification();
+        taskNotification = new Notification( Calendar.getInstance().getTime() );
         String srcPic = SourceRetriever.sourcePic(srcType, task.getAuthorId(), controller);
-        
         
         if (srcPic != null)
             taskNotification.setPicture(srcPic);
@@ -214,7 +214,10 @@ public class TaskBean {
         
         String link = buildLink( srcType , id );        
         taskNotification.setLink(link);        
-        logBean.getSessionUser().getNotifications().add( taskNotification );        
+          
+        System.out.println( "Enum: " + srcType );
+        
+        //logBean.getSessionUser().getNotifications().add( taskNotification );        
     }
 
     private Comment buildComment(String text) {
@@ -230,7 +233,9 @@ public class TaskBean {
     }
 
     private void buildResponsable() {
-
+        
+        System.out.println("Id do responsável: " + responsable.getId() );
+        
         responsable.getNotifications().add(taskNotification);
         responsable.getTasks().add(task);
     }

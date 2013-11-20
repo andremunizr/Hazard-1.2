@@ -59,14 +59,16 @@
 
                             <h:outputLabel value="Responsável:" />
                             <p:selectOneMenu value="#{taskBean.responsableId}"
-                                             required="true" >
+                                             required="true"
+                                             styleClass="wide-select-menu">
                                 <f:selectItems value="#{userBean.users}" 
                                                var="user"                                               
                                                itemLabel="#{user.name}"
                                                itemValue="#{user.id}" />
                             </p:selectOneMenu>
 
-                            <p:commandButton action="#{taskBean.save()}"
+                            <p:commandButton actionListener="#{taskBean.save()}"
+                                             action="minhas-tarefas?faces-redirect=true"
                                              styleClass="action-button search-button" 
                                              value="salvar"
                                              update="@form" />
