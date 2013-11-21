@@ -239,4 +239,10 @@ public class TaskBean {
         responsable.getNotifications().add(taskNotification);
         responsable.getTasks().add(task);
     }
+    
+    public List<Task> sentList( User user ) throws UnknownHostException{
+        
+        return (List<Task>) (List<?>) controller.getDocuments( Task.class, "authorId", user.getId() );
+    }
+    
 }

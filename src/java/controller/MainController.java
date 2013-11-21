@@ -57,6 +57,19 @@ public class MainController {
         
         return objects;
     }
+
+    public List<Object> getDocuments( Class type, String attr, String value ) throws UnknownHostException{
+        List<Object> objects = new ArrayList<>();
+        
+        MongoCollection listRetrieved = getCollection( type );
+        Iterable<Object> all = listRetrieved.find( "{" + attr + " : '" + value + "'}" ).as( type );
+        
+        for( Object obj : all ) {
+            objects.add( obj );
+        }
+        
+        return objects;
+    }
     
     public Object findOne( Class type, String objectId ) throws UnknownHostException {
         MongoCollection collection = getCollection( type );

@@ -70,6 +70,7 @@
                         <p:fileUpload value="#{beanUpload.file}"  
                                       mode="simple" update="growl" />
                         <h:commandButton value="enviar"
+                                       action="profile.xhtml?faces-redirect=true"
                                        actionListener="#{beanUpload.upload()}" />  
                         <p:growl id="growl" showDetail="true"/>
                     </h:form>

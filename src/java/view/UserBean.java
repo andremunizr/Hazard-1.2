@@ -1,4 +1,3 @@
-
 package view;
 
 import controller.MainController;
@@ -68,6 +67,5 @@ public class UserBean {
     
     public User findOne( String objectId ) throws UnknownHostException{
         return (User) controller.findOne( User.class, objectId );
-    }
-    
+    }    
 }

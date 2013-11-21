@@ -15,17 +15,25 @@
                     <ul class="menuUl">                        
                         <li>
                             <span class="hoverable headerTitle right-recue">
-                                <h:graphicImage library="img" name="new-task2.png" styleClass="icon" />
-                                <h:link value="nova tarefa" 
+                                <h:graphicImage library="img" name="plus.png" styleClass="icon" />
+                                <h:link value="nova" 
                                         outcome="tarefas.xhtml?faces-redirect=true" 
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
+                         <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="down.png" styleClass="icon" />
+                                <h:link value="recebidas" 
+                                        outcome="minhas-tarefas.xhtml?faces-redirect=true"
                                         styleClass="icon-link" />
                             </span>
                         </li>
                         <li>
                             <span class="hoverable headerTitle right-recue">
-                                <h:graphicImage library="img" name="my-tasks2.png" styleClass="icon" />
-                                <h:link value="minhas tarefas" 
-                                        outcome="minhas-tarefas.xhtml?faces-redirect=true"
+                                <h:graphicImage library="img" name="up.png" styleClass="icon" />
+                                <h:link value="enviadas" 
+                                        outcome="tarefas-enviadas.xhtml?faces-redirect=true"
                                         styleClass="icon-link" />
                             </span>
                         </li>

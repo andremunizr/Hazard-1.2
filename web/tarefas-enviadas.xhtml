@@ -4,12 +4,13 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
+
     <body>
 
         <ui:composition template="./temp/index.xhtml">
 
             <ui:define name="content">
-
+                
                 <h:form class="underline">
                     <ul class="menuUl">                        
                         <li>
@@ -40,11 +41,11 @@
                 </h:form>
 
                 <section class="advice-center">
-                    <h:outputText rendered="#{empty loggBean.sessionUser.tasks}"
+                    <h:outputText rendered="#{empty taskBean.sentList( loggBean.sessionUser )}"
                                   value="Nenhuma tarefa a ser exibida" />
                 </section>
 
-                <ui:repeat value="#{loggBean.sessionUser.tasks}" var="task">
+                <ui:repeat value="#{taskBean.sentList( loggBean.sessionUser )}" var="task">
 
                     <section class="taskItems">
 
@@ -92,10 +93,12 @@
                 </ui:repeat>
 
                 <script>
-                    document.title = 'Tarefas Recebidas';
+                    document.title = 'Tarefas Enviadas';
                 </script>  
+                
             </ui:define>
 
         </ui:composition>
+
     </body>
 </html>
