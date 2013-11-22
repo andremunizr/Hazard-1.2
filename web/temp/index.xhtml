@@ -99,7 +99,11 @@
             <div id="left">
                 <ui:insert name="left">
                     <div class="titles back-green" id="titleFacadeNotif">
-                        Notificações
+                        <h:form>
+                        <h:commandLink value="Notificações" 
+                                       action="notificacoes.xhtml?faces-redirect=true"
+                                       styleClass="white"/>
+                        </h:form>
                     </div>
                     <div class="notifBox" id="notifBox">                            
                         <ul class="notifList">

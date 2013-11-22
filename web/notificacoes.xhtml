@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body>
+
+        <ui:composition template="./temp/index.xhtml">
+
+            <ui:define name="content">
+
+                <ul class="menuUl">                        
+                    <li>
+                        <span class="hoverable headerTitle right-recue">
+                            <h:graphicImage library="img" name="notify.png" styleClass="icon" />
+                            <h:link value="notificações" 
+                                    outcome="tarefas.xhtml?faces-redirect=true" 
+                                    styleClass="icon-link" />                                
+                        </span>
+                    </li>
+                </ul>
+
+                <ul class="notifList notif-box-li">
+                    <ui:repeat value="#{loggBean.sessionUser.notifications}"
+                               var="notif">
+                        <li class="read-#{notif.read}">                                    
+                            <h:form>
+                                <h:graphicImage library="img" 
+                                                name="maleIcon.png"
+                                                rendered="#{notif.picture == null and
+                                                            notif.sourceType == 'TASK' and
+                                                            userBean.findOne( notif.sourceId ).image == null and
+                                                            userBean.findOne( notif.sourceId ).sexo == 'masculino'}" />
+
+                                <h:graphicImage library="img" 
+                                                name="femaleIcon.png"
+                                                rendered="#{notif.picture == null and
+                                                            notif.sourceType == 'TASK' and
+                                                            userBean.findOne( notif.sourceId ).image == null and
+                                                            userBean.findOne( notif.sourceId ).sexo == 'feminino'}" />
+
+                                <h:graphicImage library="avImg" 
+                                                name="#{userBean.findOne( notif.sourceId ).image}"
+                                                rendered="#{notif.sourceType == 'TASK' and
+                                                            (notif.picture != null or
+                                                            userBean.findOne( notif.sourceId ).image != null)}" />
+
+                                <h:graphicImage library="avImg" 
+                                                name="#{notif.picture}"
+                                                rendered="#{notif.sourceType != 'TASK'}" />
+
+                                <section class="notif-box notif-box-list">
+                                    <section class="notif-box-block-left">
+                                        <p>
+                                            <h:commandLink styleClass="white-link" 
+                                                           action="#{ loggBean.setRead( notif ) }"     
+                                                           value="#{ notif.text }">
+                                            </h:commandLink>
+                                        </p>
+
+                                        <p>
+                                            <h:outputText value="#{notif.date}">
+                                                <f:convertDateTime dateStyle="long" pattern="d MMMM HH:mm" />
+                                            </h:outputText>
+                                        </p>    
+                                    </section>
+
+                                    <section class="notif-box-block-right">   
+                                        <section class="delete-task">
+                                            <h:commandLink value="remover" action="#{loggBean.removeNot( notif )}" />
+                                        </section>
+                                    </section>
+                                </section>
+                            </h:form>
+                        </li>
+                    </ui:repeat>
+                </ul>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

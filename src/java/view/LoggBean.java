@@ -126,7 +126,7 @@ public class LoggBean implements Serializable {
     }
 
     public void removeNot( Notification notif ) throws UnknownHostException{
-        System.out.println("remove notification");
+        
         for( Notification f : sessionUser.getNotifications() ){
             
             if( f.equals( notif ) ){

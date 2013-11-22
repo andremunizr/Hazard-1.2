@@ -818,3 +818,40 @@
 .wide-select-menu{
     width: 200px;
 }
+
+.white{
+    color: #fff!important;
+}
+
+.delete-task{
+    float: right;
+}
+
+.icon-list{
+    width: 30px;
+    height: 30px;
+}
+
+.notif-box-list{
+    width: 700px;
+    height: 42px;
+}
+
+.notif-box-li li:hover{
+    /*background-color: #ddd;*/
+
+    color: #e8e8e8;
+    box-shadow: 0px 1px 1px #999 inset;
+    background-image: linear-gradient(bottom, #646461, #999);
+    background-image: -webkit-linear-gradient(bottom, #999, #ddd);
+}
+
+.notif-box-block-left{
+    display: inline-block;
+    float: left;
+}
+
+.notif-box-block-right{
+    display: inline-block;
+    float: right;
+}

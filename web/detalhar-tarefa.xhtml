@@ -45,14 +45,17 @@
                 </p>
 
                 <p class="grey-text">
-                    <span style="color:#000">Por </span>
-                    #{taskBean.findOne(param.id).author}
+                    <span style="color:#000">De </span>
+                    #{taskBean.findOne(param.id).author}                    
+                    <span style="color:#000"> para </span>
+                    #{userBean.findOne( taskBean.findOne(param.id).responsableId ).name}
+                    
                     <span class="float-right grey-text margin-left">
                         Fim: <h:outputText value="#{taskBean.findOne(param.id).finishDate}">
                             <f:convertDateTime dateStyle="long" pattern="d MMMM" />
                         </h:outputText>
-                    </span>        
-
+                    </span> 
+                    
                     <span class="float-right grey-text margin-left">
                         Início: <h:outputText value="#{taskBean.findOne(param.id).releaseDate}">
                             <f:convertDateTime dateStyle="long" pattern="d MMMM" />
@@ -108,7 +111,7 @@
 
                 <h:panelGrid rendered="#{taskBean.findOne( param.id ).status != 'concluída' }">
                     <p class="headerTitle" id="edit-task-title">
-                        editar tarefa
+                        editar ou comentar tarefa
                     </p>
                 </h:panelGrid>
 
@@ -116,8 +119,10 @@
                     <h:form rendered="#{taskBean.findOne( param.id ).status != 'concluída' }">
                         <h:panelGrid columns="1">
 
-                            <h:outputText value="Status:" />
-                            <p:selectOneMenu value="#{taskBean.task.status}">
+                            <h:outputText value="Status:"
+                                          rendered="#{taskBean.findOne( param.id ).responsableId == loggBean.sessionUser.id}" />
+                            <p:selectOneMenu value="#{taskBean.task.status}"
+                                             rendered="#{taskBean.findOne( param.id ).responsableId == loggBean.sessionUser.id}">
                                 <f:selectItems value="#{optionsMenu.status}" />
                             </p:selectOneMenu>
 
@@ -129,7 +134,6 @@
 
                             <h:commandButton styleClass="action-button"
                                              actionListener="#{taskBean.edit( param.id )}"
-                                             action="minhas-tarefas.xhtml?faces-redirect=true"
                                              value="salvar" >
                                 <f:param name="id" value="#{param.id}" />
                             </h:commandButton>
