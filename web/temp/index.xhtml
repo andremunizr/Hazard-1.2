@@ -160,28 +160,13 @@
                     </div>
                     <div class="projBox" id="projBox">                            
                         <ul class="projList">
-                            <li>
-                                <!-- <h:graphicImage library="img" name="evil-toddler.jpg" /> -->
+                            <ui:repeat value="#{projectBean.availableProjects}" var="project">
+                                <li>#{project.name}</li>
+                            </ui:repeat>
+                            <!--<li>
+                                <h:graphicImage library="img" name="evil-toddler.jpg" />
                                 One Piece
-                            </li>
-                            <li>                                    
-                                One Piece
-                            </li>
-                            <li>
-                                One Piece
-                            </li>
-                            <li>
-                                One Piece
-                            </li>
-                            <li>
-                                One Piece
-                            </li>
-                            <li>
-                                One Piece
-                            </li>
-                            <li>
-                                One Piece
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                 </ui:insert>
