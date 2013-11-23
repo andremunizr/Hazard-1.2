@@ -25,6 +25,8 @@
     text-shadow: 1px 1px 1px #aaa; 
     cursor: pointer;
     transition: 1s;
+    display: inline-block;
+    padding-top: 8px;
 }
 
 #hazardTitle:hover{
@@ -131,6 +133,7 @@
 .loginBox{
     z-index: 9999999;
     display: none;
+    position: absolute;
     margin-top: 20px;
     margin-left: -15px;
     border: 1px solid #999;
@@ -206,13 +209,13 @@
 .right-login-button{
     position: absolute;
     right: 20px;
-    top: 0;
+    top: 10px;
     cursor: pointer;
 }
 
 .silverStar{
     margin: -10px -10px 0 10px;
-    height: 30px;
+    height: 50px;
     vertical-align: middle;
 }
 
@@ -228,9 +231,9 @@
 }
 
 .top-img{
-    width: 42px;
-    height: 42px;
-    top: 0;
+    width: 50px;
+    height: 50px;
+    top: 4px;
     position: absolute;
     margin-left: 34px;
 }
@@ -264,7 +267,7 @@
 
 .img-top-menu{
     position: absolute;
-    top: -5px;
+    top: 3px;
     right: 0;
     width: 100%;
     height: 100%;
@@ -362,6 +365,7 @@
 }
 
 .welcome{
+    display: none;
     width: 74%;
     height: auto;
     max-height: 600px;
@@ -781,7 +785,7 @@
     width: 400px;
     height: 40px;
     position: absolute;
-    top: 0;
+    top: 9px;
     left: 50%;
     margin-left: -200px;
     color: #888;

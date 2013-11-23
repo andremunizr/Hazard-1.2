@@ -1,0 +1,78 @@
+/* 
+    Document   : stage
+    Created on : 23/11/2013, 13:44:18
+    Author     : André
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+@keyframes spin {
+    from{ transform: translateX( 0px );}
+to{ transform: translateX( 200px ); }
+}
+
+@-webkit-keyframes webkitBalloon{
+    	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
+
+@-moz-keyframes mozBalloon{
+   0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
+
+@-webkit-keyframes webkitCloud{
+    	0% {margin-left: 300px;}
+	100% {margin-left: -300px;}
+}
+
+@-moz-keyframes webkitCloud{
+    	0% {margin-left: 300px;}
+	100% {margin-left: -300px;}
+}
+
+@-webkit-keyframes webkitCloud2{
+    	0% {margin-left: 1200px;}
+	100% {margin-left: -1200px;}
+}
+
+@-moz-keyframes webkitCloud2{
+    	0% {margin-left: 1200px;}
+	100% {margin-left: -1200px;}
+}
+
+root { 
+    display: block;
+}
+
+.balloon{    
+}
+
+.cloud1{
+    position: absolute;
+    z-index: 8500;
+    top: 60px;
+    animation-timing-function: linear;
+    -webkit-animation: webkitCloud 160s linear infinite;
+    -moz-animation: mozSpin 160s linear infinite;
+}
+
+.cloud2{
+    position: absolute;
+    z-index: 8500;
+    top: 10px;
+    animation-timing-function: linear;
+    -webkit-animation: webkitCloud2 160s linear infinite;
+    -moz-animation: mozSpin 160s linear infinite;
+}
+
+.balloonImg{
+    position: absolute;
+    z-index: 9000;
+    top: 100px;
+    animation-timing-function: linear;
+    -webkit-animation: webkitBalloon 156s linear infinite;
+    -moz-animation: mozSpin 16s linear infinite;
+}
+
+
