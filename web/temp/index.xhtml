@@ -83,13 +83,13 @@
                                    </span>
                                </section>
                            </li> -->
-                        <li>
-                            <h:form>
-                                <h:commandLink styleClass="first-icon-menu menu-icons">
-                                    <h:graphicImage styleClass="img-top-menu" library="img" name="gear.png" />
-                                </h:commandLink>
-                            </h:form>
-                        </li> 
+                         <li>
+                               <section id="menu-button">
+                                   <span class="first-icon-menu menu-icons">
+                                       <h:graphicImage styleClass="img-top-menu" library="img" name="menu-i.png" />
+                                   </span>
+                               </section>
+                           </li>
                     </ul>
                 </div>
 
@@ -168,28 +168,7 @@
                                           rendered="#{loggBean.sessionUser.notifications.size() == 0}" />
                         </section>
                         <ul class="projList">
-                            <li>
-                                <!-- <h:graphicImage library="img" name="evil-toddler.jpg" /> -->
-                                One Piece
-                            </li>
-                            <li>                                    
-                                One Piece
-                            </li>
-                            <li>
-                                One Piece
-                            </li>
-                            <li>
-                                One Piece
-                            </li>
-                            <li>
-                                One Piece
-                            </li>
-                            <li>
-                                One Piece
-                            </li>
-                            <li>
-                                One Piece
-                            </li>
+                            
                         </ul>
                     </div>
                 </ui:insert>
@@ -261,29 +240,15 @@
                 <li>
                     <h:form>
                         <h:commandLink styleClass="icon-link" 
-                                       action="index.xhtml?faces-redirect=true" 
-                                       value="início" />                                
+                                       action="usuarios.xhtml?faces-redirect=true" 
+                                       value="usuários" />                                
                     </h:form>
                 </li>
                 <li>
                     <h:form>
                         <h:link styleClass="icon-link" 
-                                outcome="minhas-tarefas.xhtml?faces-redirect=true" 
-                                value="tarefas" />
-                    </h:form>
-                </li>
-                <li>
-                    <h:form>
-                        <h:link styleClass="icon-link" 
-                                outcome="profile.xhtml?faces-redirect=true" 
-                                value="perfil" />
-                    </h:form>
-                </li>                       
-                <li>
-                    <h:form>
-                        <h:commandLink styleClass="icon-link"
-                                       action="#{loggBean.logout()}" 
-                                       value="sair" />
+                                outcome="insignias.xhtml?faces-redirect=true" 
+                                value="insígnias" />
                     </h:form>
                 </li>
             </ul>

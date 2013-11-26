@@ -41,11 +41,23 @@ to{ transform: translateX( 200px ); }
     100% {margin-left: -1200px;}
 }
 
+@-webkit-keyframes eiffel{
+    0% {margin-left: 1200px;}
+    100% {margin-left: 100px;}
+}
+
+@-moz-keyframes eiffel{
+    0% {margin-left: 1200px;}
+    100% {margin-left: 1400px;}
+}
+
 root { 
     display: block;
 }
 
 .balloon{    
+    overflow: hidden;
+    height: 100%;
 }
 
 .cloud1{
@@ -54,7 +66,7 @@ root {
     top: 60px;
     animation-timing-function: linear;
     -webkit-animation: webkitCloud 160s linear infinite;
-    -moz-animation: mozSpin 160s linear infinite;
+    -moz-animation: webkitCloud 160s linear infinite;
 }
 
 .cloud2{
@@ -63,7 +75,7 @@ root {
     top: 10px;
     animation-timing-function: linear;
     -webkit-animation: webkitCloud2 160s linear infinite;
-    -moz-animation: mozSpin 160s linear infinite;
+    -moz-animation: webkitCloud2 160s linear infinite;
 }
 
 .balloonImg{
@@ -72,7 +84,7 @@ root {
     top: 200px;
     animation-timing-function: linear;
     -webkit-animation: webkitBalloon 110s linear infinite;
-    -moz-animation: mozSpin 16s linear infinite;
+    -moz-animation: webkitBalloon 16s linear infinite;
 }
 
 .sun{
@@ -82,4 +94,11 @@ root {
     right: 200px;
 }
 
-
+.eiffel{
+    position: absolute;
+    z-index: 9000;
+    bottom: -230px;
+    animation-timing-function: linear;
+    -webkit-animation: eiffel 140s linear infinite;
+    -moz-animation: eiffel 16s linear infinite;
+}

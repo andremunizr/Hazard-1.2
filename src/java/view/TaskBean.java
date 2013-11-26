@@ -127,8 +127,6 @@ public class TaskBean {
             notBean.setNotification( taskNotification );
             notBean.save();
             
-            System.out.println("taskNotification id (1): " + taskNotification.getId());
-            
             controller.saveDocument( User.class, responsable );
         }
         
@@ -137,8 +135,6 @@ public class TaskBean {
             logBean.getSessionUser().getNotifications().add( taskNotification );
             notBean.setNotification( taskNotification );
             notBean.save();
-            
-            System.out.println("taskNotification id (5): " + taskNotification.getId());
             
             controller.saveDocument( User.class, responsable );
         }
@@ -200,9 +196,7 @@ public class TaskBean {
                 
                 if( complete >= 5 ){
                     if ( testTask.getFinishDate().after( today ) ){
-                    
-                        System.out.println("Quinta insígnia!");
-
+                        
                         logBean.getSessionUser().setHaveFifthTaskComplete( true );
 
                         Badge badge = new Badge( BadgeEnum.FIFTH_TASK.getName(),
@@ -259,11 +253,7 @@ public class TaskBean {
         taskNotification.setSourceType( srcType.toString() );
         
         String link = buildLink( srcType , id );        
-        taskNotification.setLink(link);        
-          
-        System.out.println( "Enum: " + srcType );
-        
-        //logBean.getSessionUser().getNotifications().add( taskNotification );        
+        taskNotification.setLink(link);    
     }
 
     private Comment buildComment(String text) {
@@ -278,10 +268,7 @@ public class TaskBean {
         return cmt;
     }
 
-    private void buildResponsable() {
-        
-        System.out.println("Id do responsável: " + responsable.getId() );
-        
+    private void buildResponsable() {                
         responsable.getNotifications().add(taskNotification);
         responsable.getTasks().add(task);
     }
