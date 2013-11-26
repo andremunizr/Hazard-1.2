@@ -100,12 +100,16 @@
                 <ui:insert name="left">
                     <div class="titles back-green" id="titleFacadeNotif">
                         <h:form>
-                        <h:commandLink value="Notificações" 
-                                       action="notificacoes.xhtml?faces-redirect=true"
-                                       styleClass="white"/>
+                            <h:link value="Notificações" 
+                                    outcome="notificacoes.xhtml"
+                                    styleClass="white"/>
                         </h:form>
                     </div>
-                    <div class="notifBox" id="notifBox">                            
+                    <div class="notifBox" id="notifBox">      
+                        <section class="no-notif">
+                            <h:outputText value="Nenhuma notificação" 
+                                          rendered="#{loggBean.sessionUser.notifications.size() == 0}" />
+                        </section>
                         <ul class="notifList">
                             <ui:repeat value="#{loggBean.sessionUser.notifications}"
                                        var="notif">
@@ -158,7 +162,11 @@
                     <div class="titles back-orange" id="titleFacadeNotif">
                         Projetos
                     </div>
-                    <div class="projBox" id="projBox">                            
+                    <div class="projBox" id="projBox"> 
+                        <section class="no-notif">
+                            <h:outputText value="Nenhum projeto" 
+                                          rendered="#{loggBean.sessionUser.notifications.size() == 0}" />
+                        </section>
                         <ul class="projList">
                             <li>
                                 <!-- <h:graphicImage library="img" name="evil-toddler.jpg" /> -->

@@ -6,7 +6,8 @@ import java.util.Date;
 
 public enum BadgeEnum {
     
-    FIRST_TASK( "Primeira Tarefa", "united-kingdom-badge.png", Calendar.getInstance().getTime() );
+    FIRST_TASK( "Primeira Tarefa", "united-kingdom-badge.png", Calendar.getInstance().getTime() ),
+    FIFTH_TASK( "Quinta Tarefa", "macau-badge.png", Calendar.getInstance().getTime() );
  
     private String name;
     private String image;

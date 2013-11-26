@@ -89,12 +89,16 @@ public class LoggBean implements Serializable {
     }
 
     public String setRead( Notification notif ) throws UnknownHostException {
-   
+        System.out.println("grrrrrrrr");
         for (Notification n : sessionUser.getNotifications()) {
             
             try {
+                
+                System.out.println("Id de n:" + n.getId());
+                System.out.println("Id de notif:" + notif.getId());
+                
                 if (n.getId().equals( notif.getId() )) {
-                    
+                    System.out.println("Vamo ver...");
                     n.setRead(true);
                     bean.save( sessionUser );
                     break;

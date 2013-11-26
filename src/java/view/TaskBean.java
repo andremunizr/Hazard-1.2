@@ -126,6 +126,20 @@ public class TaskBean {
             logBean.getSessionUser().getNotifications().add( taskNotification );
             notBean.setNotification( taskNotification );
             notBean.save();
+            
+            System.out.println("taskNotification id (1): " + taskNotification.getId());
+            
+            controller.saveDocument( User.class, responsable );
+        }
+        
+        if( testFifthTask( uTask )){    
+            buildNotification( BadgeEnum.FIFTH_TASK, id );
+            logBean.getSessionUser().getNotifications().add( taskNotification );
+            notBean.setNotification( taskNotification );
+            notBean.save();
+            
+            System.out.println("taskNotification id (5): " + taskNotification.getId());
+            
             controller.saveDocument( User.class, responsable );
         }
         
@@ -167,8 +181,40 @@ public class TaskBean {
                     return true;
                 }
             }            
-        }
-        
+        }        
+        return false;
+    }
+    
+    public boolean testFifthTask(Task testTask) throws UnknownHostException {
+
+        if( logBean.getSessionUser().getTasks().size() < 5 ) return false;        
+        Date today = Calendar.getInstance().getTime();
+                
+        if ( testTask.getStatus().equals("concluída") ){            
+            if ( !logBean.getSessionUser().getHaveFifthTaskComplete() ){
+                
+                int complete = 0;
+                for( Task t : logBean.getSessionUser().getTasks() ){
+                    if( "concluída".equals( t.getStatus() ) ) complete += 1;
+                }
+                
+                if( complete >= 5 ){
+                    if ( testTask.getFinishDate().after( today ) ){
+                    
+                        System.out.println("Quinta insígnia!");
+
+                        logBean.getSessionUser().setHaveFifthTaskComplete( true );
+
+                        Badge badge = new Badge( BadgeEnum.FIFTH_TASK.getName(),
+                                                 BadgeEnum.FIFTH_TASK.getImage(),
+                                                 BadgeEnum.FIFTH_TASK.getDateAcquired());
+
+                        logBean.getSessionUser().getBadges().add( badge );                    
+                        return true;
+                    }
+                }
+            }            
+        }        
         return false;
     }
 
