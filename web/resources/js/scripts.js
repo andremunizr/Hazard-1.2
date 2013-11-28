@@ -13,7 +13,7 @@ function toggleLoginBox(){
 
 function toggleEquipBox(){
     
-    $('#equipBox').slideToggle();
+    //$('#equipBox').slideToggle();
 }
 
 function toggleOptionsBox(){

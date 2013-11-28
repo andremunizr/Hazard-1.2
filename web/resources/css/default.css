@@ -8,6 +8,7 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    background-image: -webkit-linear-gradient( bottom, #40E0D0, #fff );
     /*background-color: #646461;*/
 }
 
@@ -18,6 +19,7 @@ body {
     color: #000000;  
     margin: 10px;
     margin: 0;
+    overflow: hidden;
 }
 
 h1 {

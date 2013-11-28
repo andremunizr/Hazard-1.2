@@ -64,7 +64,7 @@
                 </div>
 
                 <div>
-                    <h:graphicImage library="img" name="dice.png" styleClass="silverStar" />
+                    <h:graphicImage library="img" name="crown2.png" styleClass="silverStar" />
                     <span id="hazardTitle">
                         Hazard
                     </span>
@@ -72,7 +72,7 @@
                                     library="avImg"
                                     name="#{loggBean.sessionUser.image}"
                                     rendered="#{loggBean.sessionUser.image != null}" />
-                    <span style="margin-left: 85px">
+                    <span style="margin-left: 85px; font-size: 13px; font-weight: bold; text-transform: capitalize;">
                         <h:outputText value="#{loggBean.sessionUser.name}" />
                     </span>
                     <ul class="topUl">                        
@@ -83,13 +83,13 @@
                                    </span>
                                </section>
                            </li> -->
-                        <li>
-                            <h:form>
-                                <h:commandLink styleClass="first-icon-menu menu-icons">
-                                    <h:graphicImage styleClass="img-top-menu" library="img" name="gear.png" />
-                                </h:commandLink>
-                            </h:form>
-                        </li> 
+                         <li>
+                               <section id="menu-button">
+                                   <span class="first-icon-menu menu-icons">
+                                       <h:graphicImage styleClass="img-top-menu" library="img" name="menu-i.png" />
+                                   </span>
+                               </section>
+                           </li>
                     </ul>
                 </div>
 
@@ -100,12 +100,16 @@
                 <ui:insert name="left">
                     <div class="titles back-green" id="titleFacadeNotif">
                         <h:form>
-                        <h:commandLink value="Notificações" 
-                                       action="notificacoes.xhtml?faces-redirect=true"
-                                       styleClass="white"/>
+                            <h:link value="Notificações" 
+                                    outcome="notificacoes.xhtml"
+                                    styleClass="white"/>
                         </h:form>
                     </div>
-                    <div class="notifBox" id="notifBox">                            
+                    <div class="notifBox" id="notifBox">      
+                        <section class="no-notif">
+                            <h:outputText value="Nenhuma notificação" 
+                                          rendered="#{loggBean.sessionUser.notifications.size() == 0}" />
+                        </section>
                         <ul class="notifList">
                             <ui:repeat value="#{loggBean.sessionUser.notifications}"
                                        var="notif">
@@ -162,7 +166,11 @@
                                        styleClass="white"/>
                         </h:form>
                     </div>
-                    <div class="projBox" id="projBox">                            
+                    <div class="projBox" id="projBox"> 
+                        <section class="no-notif">
+                            <h:outputText value="Nenhum projeto" 
+                                          rendered="#{loggBean.sessionUser.notifications.size() == 0}" />
+                        </section>
                         <ul class="projList">
                             <ui:repeat value="#{projectBean.availableProjects}" var="project">
                                 <li>#{project.name}</li>
@@ -242,29 +250,15 @@
                 <li>
                     <h:form>
                         <h:commandLink styleClass="icon-link" 
-                                       action="index.xhtml?faces-redirect=true" 
-                                       value="início" />                                
+                                       action="usuarios.xhtml?faces-redirect=true" 
+                                       value="usuários" />                                
                     </h:form>
                 </li>
                 <li>
                     <h:form>
                         <h:link styleClass="icon-link" 
-                                outcome="minhas-tarefas.xhtml?faces-redirect=true" 
-                                value="tarefas" />
-                    </h:form>
-                </li>
-                <li>
-                    <h:form>
-                        <h:link styleClass="icon-link" 
-                                outcome="profile.xhtml?faces-redirect=true" 
-                                value="perfil" />
-                    </h:form>
-                </li>                       
-                <li>
-                    <h:form>
-                        <h:commandLink styleClass="icon-link"
-                                       action="#{loggBean.logout()}" 
-                                       value="sair" />
+                                outcome="insignias.xhtml?faces-redirect=true" 
+                                value="insígnias" />
                     </h:form>
                 </li>
             </ul>

@@ -1,0 +1,142 @@
+/* 
+    Document   : stage
+    Created on : 23/11/2013, 13:44:18
+    Author     : André
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+@keyframes spin {
+    from{ transform: translateX( 0px );}
+to{ transform: translateX( 200px ); }
+}
+
+@-webkit-keyframes webkitBalloon{
+    0% {margin-left: 400px;}
+    100% {margin-left: 1500px;}
+}
+
+@-moz-keyframes mozBalloon{
+    0% {margin-left: 200px;}
+    100% {margin-left: 1500px;}
+}
+
+@-webkit-keyframes webkitCloud{
+    0% {margin-left: 300px;}
+    100% {margin-left: -300px;}
+}
+
+@-moz-keyframes webkitCloud{
+    0% {margin-left: 300px;}
+    100% {margin-left: -300px;}
+}
+
+@-webkit-keyframes webkitCloud2{
+    0% {margin-left: 1200px;}
+    100% {margin-left: -1200px;}
+}
+
+@-moz-keyframes webkitCloud2{
+    0% {margin-left: 1200px;}
+    100% {margin-left: -1200px;}
+}
+
+@-webkit-keyframes eiffel{
+    0% {margin-left: 1200px;}
+    100% {margin-left: 100px;}
+}
+
+@-moz-keyframes eiffel{
+    0% {margin-left: 1200px;}
+    100% {margin-left: 1400px;}
+}
+
+@-webkit-keyframes build1{
+    0% {margin-left: 600px;}
+    100% {margin-left: -500px;}
+}
+
+@-moz-keyframes build1{
+    0% {margin-left: 600px;}
+    100% {margin-left: -500px;}
+}
+
+@-webkit-keyframes build2{
+    0% {margin-left: 220px;}
+    100% {margin-left: -720px;}
+}
+
+@-moz-keyframes build2{
+    0% {margin-left: 600px;}
+    100% {margin-left: -500px;}
+}
+
+root { 
+    display: block;
+}
+
+.balloon{    
+    overflow: hidden;
+    height: 100%;
+}
+
+.cloud1{
+    position: absolute;
+    z-index: 8500;
+    top: 60px;
+    animation-timing-function: linear;
+    -webkit-animation: webkitCloud 160s linear infinite;
+    -moz-animation: webkitCloud 160s linear infinite;
+}
+
+.cloud2{
+    position: absolute;
+    z-index: 8500;
+    top: 10px;
+    animation-timing-function: linear;
+    -webkit-animation: webkitCloud2 160s linear infinite;
+    -moz-animation: webkitCloud2 160s linear infinite;
+}
+
+.balloonImg{
+    position: absolute;
+    z-index: 9000;
+    top: 200px;
+    animation-timing-function: linear;
+    -webkit-animation: webkitBalloon 110s linear infinite;
+    -moz-animation: webkitBalloon 16s linear infinite;
+}
+
+.sun{
+    position: absolute;
+    z-index: 1;
+    top: 50px;
+    right: 200px;
+}
+
+.eiffel{
+    position: absolute;
+    z-index: 9000;
+    bottom: -230px;
+    animation-timing-function: linear;
+    -webkit-animation: eiffel 170s linear infinite;
+    -moz-animation: eiffel 16s linear infinite;
+}
+
+.build1{
+    position: absolute;
+    z-index: 9000;
+    bottom: -250px;
+    animation-timing-function: linear;
+    -webkit-animation: build1 200s linear infinite;
+    -moz-animation: build1 16s linear infinite;
+}
+
+.build2{
+    position: absolute;
+    z-index: 9000;
+    bottom: -250px;
+    animation-timing-function: linear;
+    -webkit-animation: build2 200s linear infinite;
+    -moz-animation: build2 16s linear infinite;
+}

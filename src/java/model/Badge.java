@@ -44,6 +44,14 @@ public class Badge {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public Date getDateAcquired() {
+        return dateAcquired;
+    }
+
+    public void setDateAcquired(Date dateAcquired) {
+        this.dateAcquired = dateAcquired;
+    }
         
     @Override
     public int hashCode() {
