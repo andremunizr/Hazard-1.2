@@ -531,11 +531,15 @@
     margin-left: 0;
 }
 
-.taskItems{
+.taskItems, .projectItems {
     border-bottom: 1px solid #848481;
     overflow: hidden;
     box-sizing: border-box;
     padding: 5px 5px 5px 0;
+}
+
+.projectItems {
+    line-height: 30px;
 }
 
 .avatar-display{
@@ -545,7 +549,7 @@
     vertical-align: middle;
 }
 
-.task-list-span{
+.task-list-span, .project-list-span{
     padding: 0 5px;
     display: inline-block;
 }
@@ -555,7 +559,7 @@
     text-align: center;
 }
 
-.desc-task{
+.desc-task, .desc-project{
     width: 400px;
 }
 
