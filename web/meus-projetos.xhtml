@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <body>
+
+        <ui:composition template="./temp/index.xhtml">
+
+            <ui:define name="content">
+
+                <h:form class="underline">
+                    <ul class="menuUl">                        
+                        <li>
+                            <span class="headerTitle">
+                                <h:commandLink value="novo projeto" action="projetos.xhtml" />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="headerTitle">
+                                <h:commandLink value="meus projetos" action="meus-projetos.xhtml" />
+                            </span>
+                        </li>
+                    </ul>
+                </h:form>
+
+                <section class="advice-center">
+                    <h:outputText rendered="#{empty loggBean.sessionUser.projects}"
+                                  value="Nenhum projeto a ser exibido" />
+                </section>
+                
+                <ui:repeat value="#{loggBean.sessionUser.projects}" var="project">
+                    <section class="projectItems">
+                        <section class="project-list-span desc-project">
+                            <h:form>
+                                <h:link outcome="detalhar-projeto.xhtml" value="#{project.name}">
+                                </h:link>
+                            </h:form>
+                        </section>
+                    </section>
+                </ui:repeat>
+                
+                <script>
+                    document.title = 'Meus Projetos';
+                </script>  
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>

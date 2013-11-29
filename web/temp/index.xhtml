@@ -160,7 +160,11 @@
                         </ul>
                     </div>
                     <div class="titles back-orange" id="titleFacadeNotif">
-                        Projetos
+                        <h:form>
+                        <h:commandLink value="Projetos" 
+                                       action="meus-projetos.xhtml?faces-redirect=true"
+                                       styleClass="white"/>
+                        </h:form>
                     </div>
                     <div class="projBox" id="projBox"> 
                         <section class="no-notif">
@@ -168,7 +172,13 @@
                                           rendered="#{loggBean.sessionUser.notifications.size() == 0}" />
                         </section>
                         <ul class="projList">
-                            
+                            <ui:repeat value="#{projectBean.availableProjects}" var="project">
+                                <li>#{project.name}</li>
+                            </ui:repeat>
+                            <!--<li>
+                                <h:graphicImage library="img" name="evil-toddler.jpg" />
+                                One Piece
+                            </li>-->
                         </ul>
                     </div>
                 </ui:insert>
