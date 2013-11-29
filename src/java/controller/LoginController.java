@@ -15,5 +15,4 @@ public class LoginController {
         ec.redirect( "login.xhtml" );
         return null;        
     } 
-
 }
