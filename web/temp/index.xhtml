@@ -83,13 +83,13 @@
                                    </span>
                                </section>
                            </li> -->
-                         <li>
-                               <section id="menu-button">
-                                   <span class="first-icon-menu menu-icons">
-                                       <h:graphicImage styleClass="img-top-menu" library="img" name="menu-i.png" />
-                                   </span>
-                               </section>
-                           </li>
+                        <li>
+                            <section id="menu-button">
+                                <span class="first-icon-menu menu-icons">
+                                    <h:graphicImage styleClass="img-top-menu" library="img" name="menu-i.png" />
+                                </span>
+                            </section>
+                        </li>
                     </ul>
                 </div>
 
@@ -105,11 +105,12 @@
                                     styleClass="white"/>
                         </h:form>
                     </div>
-                    <div class="notifBox" id="notifBox">      
-                        <section class="no-notif">
-                            <h:outputText value="Nenhuma notificação" 
-                                          rendered="#{loggBean.sessionUser.notifications.size() == 0}" />
-                        </section>
+                    <div class="notifBox" id="notifBox">  
+                        <h:panelGroup rendered="#{loggBean.sessionUser.notifications.size() == 0}">
+                            <section class="no-notif">
+                                <h:outputText value="Nenhuma notificação"  />
+                            </section>
+                        </h:panelGroup>
                         <ul class="notifList">
                             <ui:repeat value="#{loggBean.sessionUser.notifications}"
                                        var="notif">
@@ -161,15 +162,15 @@
                     </div>
                     <div class="titles back-orange" id="titleFacadeNotif">
                         <h:form>
-                        <h:commandLink value="Projetos" 
-                                       action="meus-projetos.xhtml?faces-redirect=true"
-                                       styleClass="white"/>
+                            <h:commandLink value="Projetos" 
+                                           action="meus-projetos.xhtml?faces-redirect=true"
+                                           styleClass="white"/>
                         </h:form>
                     </div>
                     <div class="projBox" id="projBox"> 
                         <section class="no-notif">
                             <h:outputText value="Nenhum projeto" 
-                                          rendered="#{loggBean.sessionUser.notifications.size() == 0}" />
+                                          rendered="#{loggBean.sessionUser.projects.size() == 0}" />
                         </section>
                         <ul class="projList">
                             <ui:repeat value="#{projectBean.availableProjects}" var="project">
@@ -259,6 +260,13 @@
                         <h:link styleClass="icon-link" 
                                 outcome="insignias.xhtml?faces-redirect=true" 
                                 value="insígnias" />
+                    </h:form>
+                </li>
+                <li>
+                    <h:form>
+                        <h:link styleClass="icon-link" 
+                                outcome="grafico-tarefas.xhtml?faces-redirect=true" 
+                                value="gráfico" />
                     </h:form>
                 </li>
             </ul>

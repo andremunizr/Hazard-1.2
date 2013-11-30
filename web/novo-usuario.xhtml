@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <body>
+
+        <ui:composition template="./temp/index.xhtml">
+            <ui:define name="content">
+                
+                <h:form>
+                    <ul class="menuUl">                        
+                        <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="down.png" styleClass="icon" />
+                                <h:link value="equipe" 
+                                        outcome="usuarios.xhtml?faces-redirect=true"
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="down.png" styleClass="icon" />
+                                <h:link value="novo usuário" 
+                                        outcome="novo-usuario.xhtml?faces-redirect=true"
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
+                    </ul>
+                </h:form>
+
+                <div class="profile-edit-box">
+                    <span class="headerTitle edit-box-title">
+                        novo usuário
+                    </span>
+                    <h:form>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Nome:" />
+                            <p:inputText size="40" value="#{userBean.user.name}"/>
+
+                            <h:outputLabel value="Email:" />
+                            <p:inputText size="40" value="#{userBean.user.email}"/>
+
+                            <h:outputLabel value="Senha:" />
+                            <p:password size="40" value="#{userBean.user.password}"/>
+
+                            <h:outputLabel value="Ocupação:" />
+                            <p:inputText size="40" value="#{userBean.user.employ}"/>
+
+                            <h:outputLabel value="Compania:" />
+                            <p:inputText size="40" value="#{userBean.user.company}" />
+
+                            <h:outputText value="Sexo" />
+                            <p:selectOneMenu value="#{userBean.user.sexo}">
+                                <f:selectItems value="#{optionsMenu.sexo}" />
+                            </p:selectOneMenu>
+
+                            <p:commandButton action="#{userBean.save()}"
+                                             styleClass="action-button search-button" 
+                                             value="salvar" update="@form" />
+                        </h:panelGrid>
+                    </h:form>
+                </div>
+
+                <script>
+                    document.title = 'Usuários';
+                </script>  
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import model.User;
 
@@ -14,6 +15,8 @@ import model.User;
 @RequestScoped
 public class UserBean {
 
+    @Inject
+    private LoggBean loggBean;
     @EJB
     private MainController controller;
     private User user;
@@ -25,6 +28,21 @@ public class UserBean {
         
         if( users == null ) {
             setUsers( ( List<User> ) ( List<?> ) controller.getDocuments( User.class ) );
+        }
+        
+        return users;
+    }
+    
+    public List<User> getUsersNot( User user ) throws UnknownHostException {
+        
+        if( users == null ) {
+            setUsers( getUsers() );
+        }
+        
+        for( User u : users ){
+            if( u.getId().equals( loggBean.getSessionUser().getId() )){
+                users.remove( u ); break;
+            }
         }
         
         return users;

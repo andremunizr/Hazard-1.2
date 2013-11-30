@@ -564,7 +564,7 @@
 }
 
 .desc-task, .desc-project{
-    width: 400px;
+    width: 390px;
 }
 
 .bold{
@@ -873,4 +873,34 @@
     font-weight: bold;
     color: #aaa;
     margin-top: 56px;
+}
+
+.badgelist{
+    margin-top: 30px;
+}
+
+.badgeimg{
+    width: 60px;
+    vertical-align: top;
+    float: left;
+}
+
+.badgetext{
+    float: left; 
+    padding: 10px;
+}
+
+.badgespan{
+    display: block;
+}
+
+.badgetitle{
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+
+.badgedesc{
+    
 }

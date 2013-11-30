@@ -1,27 +1,46 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
 
     <body>
 
         <ui:composition template="./temp/index.xhtml">
 
             <ui:define name="content">
-                
+
                 <span class="hoverable headerTitle right-recue">
                     Insígnias
                 </span>
-                
-                <ul>
+
+                <ul class="badgelist">
                     <li>
-                        
+                        <h:graphicImage library="avImg" 
+                                        styleClass="badgeimg"
+                                        name="united-kingdom-badge.png" />
+                        <section class="badgetext">
+                            <span class="badgetitle">Insígnia da Inglaterra</span><br/>
+                            <span class="badgedesc">
+                                Conquistada ao se completar a primeira tarefa.
+                            </span>
+                        </section>
                     </li>
+                    
                     <li>
-                        
+                        <h:graphicImage library="avImg" 
+                                        styleClass="badgeimg"
+                                        name="macau-badge.png" />
+                        <section class="badgetext">
+                            <span class="badgetitle">Insígnia de Macau</span><br/>
+                            <span class="badgedesc">
+                                Conquistada ao se completar 5 tarefas.
+                            </span>
+                        </section>
                     </li>
+                    
                 </ul>
-                
+
             </ui:define>
 
         </ui:composition>

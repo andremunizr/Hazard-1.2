@@ -87,7 +87,14 @@
                         <section class="task-list-span status-task #{task.status}">
                             <h:outputText value="#{task.status}" />
                         </section>
-
+                        
+                        <h:graphicImage styleClass="avatar-display" 
+                                        library="avImg" 
+                                        title="Para #{userBean.findOne( task.responsableId ).name}"
+                                        style="margin-left:10px"
+                                        name="#{userBean.findOne( task.responsableId ).image}" 
+                                        rendered="#{userBean.findOne( task.authorId ).image != null}" />  
+                        
                     </section>
                 </ui:repeat>
 
