@@ -24,6 +24,7 @@
                             <span class="hoverable headerTitle right-recue">
                                 <h:graphicImage library="img" name="down.png" styleClass="icon" />
                                 <h:link value="recebidas" 
+                                        style="color: #FF7F00!important"
                                         outcome="minhas-tarefas.xhtml?faces-redirect=true"
                                         styleClass="icon-link" />
                             </span>
@@ -33,6 +34,14 @@
                                 <h:graphicImage library="img" name="up.png" styleClass="icon" />
                                 <h:link value="enviadas" 
                                         outcome="tarefas-enviadas.xhtml?faces-redirect=true"
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="chart.png" styleClass="icon" />
+                                <h:link value="gráfico" 
+                                        outcome="grafico-tarefas.xhtml?faces-redirect=true"
                                         styleClass="icon-link" />
                             </span>
                         </li>
@@ -77,23 +86,23 @@
                                 </h:link>
                             </h:form>
                         </section>
-
-                        <section class="task-list-span date-task">
-                            <h:outputText value="#{task.releaseDate}">
-                                <f:convertDateTime dateStyle="long" pattern="d MMM h:mm" />
-                            </h:outputText>                        
-                        </section>
-
-                        <section class="task-list-span status-task #{task.status}">
-                            <h:outputText value="#{task.status}" />
-                        </section>
                         
-                        <h:graphicImage styleClass="avatar-display" 
+                        <h:graphicImage styleClass="avatar-display right" 
                                         library="avImg" 
                                         title="Para #{userBean.findOne( task.responsableId ).name}"
                                         style="margin-left:10px"
                                         name="#{userBean.findOne( task.responsableId ).image}" 
                                         rendered="#{userBean.findOne( task.authorId ).image != null}" />  
+                        
+                        <section class="task-list-span status-task #{task.status} right top-12">
+                            <h:outputText value="#{task.status}" />
+                        </section>
+                        
+                        <section class="task-list-span date-task right top-12">
+                            <h:outputText value="#{task.releaseDate}">
+                                <f:convertDateTime dateStyle="long" pattern="d MMM h:mm" />
+                            </h:outputText>                        
+                        </section>
                         
                     </section>
                 </ui:repeat>

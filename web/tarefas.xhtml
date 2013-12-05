@@ -17,6 +17,7 @@
                             <span class="hoverable headerTitle right-recue">
                                 <h:graphicImage library="img" name="plus.png" styleClass="icon" />
                                 <h:link value="nova" 
+                                        style="color: #FF7F00!important"
                                         outcome="tarefas.xhtml?faces-redirect=true" 
                                         styleClass="icon-link" />
                             </span>
@@ -37,10 +38,18 @@
                                         styleClass="icon-link" />
                             </span>
                         </li>
+                        <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="chart.png" styleClass="icon" />
+                                <h:link value="gráfico" 
+                                        outcome="grafico-tarefas.xhtml?faces-redirect=true"
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
                     </ul>
                 </h:form>
 
-                <div class="profile-edit-box">
+                <div class="profile-edit-box" style="height: 312px;">
                     <span class="headerTitle edit-box-title">
                         nova tarefa
                     </span>

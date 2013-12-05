@@ -131,6 +131,9 @@ public class TaskBean {
         }
         
         if( testFifthTask( uTask )){    
+            
+            System.out.println("Recebendo a fifth.......");
+            
             buildNotification( BadgeEnum.FIFTH_TASK, id );
             logBean.getSessionUser().getNotifications().add( taskNotification );
             notBean.setNotification( taskNotification );

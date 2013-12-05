@@ -904,3 +904,19 @@
 .badgedesc{
     
 }
+
+.right{
+    float: right;
+}
+
+.top-12{
+    margin-top: 12px;
+}
+
+.hover-white{
+    color: #000!important;
+}
+
+.hover-white:hover{
+    color: #fff!important;
+}

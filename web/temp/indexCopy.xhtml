@@ -193,25 +193,18 @@
                         <div class="equipBox" id="equipBox">
                             <ul class="equipList">
                                 <ui:repeat value="#{userBean.users}" var="user">
-                                    <li>                                        
-                                        <h:form>
-                                            <h:graphicImage library="avImg" 
+                                    <li>
+                                        <h:graphicImage library="avImg" 
                                                         name="#{user.image}" 
                                                         styleClass="group-av-img" />
-                                            <h:commandLink value="#{user.name}"
-                                                           styleClass="hover-white"
-                                                           action="profile-view.xhtml">
-                                                <f:param name="id" value="#{user.id}" />
-                                                <f:param name="faces-redirect" value="true" />
-                                            </h:commandLink>
-                                        </h:form>
+                                        <h:outputText value="#{user.name}" />
                                     </li>
                                 </ui:repeat>
                             </ul>
                         </div>
                     </ui:insert>
                 </div>
-                <div id="content" class="right_content" style="display:none">
+                <div id="content" class="right_content">
                     <ui:insert name="content">
 
                     </ui:insert>
@@ -280,11 +273,7 @@
         </section>
 
         <h:outputScript library="js" name="scripts.js" />
-        <script>
-            $(document).ready(function() {
-                $('#content').fadeIn();
-            });
-        </script>
+        
     </h:body>
 
 </html>

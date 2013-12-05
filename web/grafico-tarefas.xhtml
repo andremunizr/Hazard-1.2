@@ -1,21 +1,60 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./temp/indexCopy.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html">
 
-    <body>
-        <ui:composition template="./temp/index.xhtml">
+    <ui:define name="content">
 
-            <ui:define name="content">
-                
-                <p:lineChart id="linear" value="#{chartBean.categoryModel}" legendPosition="e"  
-                             title="Linear Chart" minY="0" maxY="10" style="height:300px">
-                </p:lineChart>
+        <h:form class="underline">
+            <ul class="menuUl">                        
+                <li>
+                    <span class="hoverable headerTitle right-recue">
+                        <h:graphicImage library="img" name="plus.png" styleClass="icon" />
+                        <h:link value="nova" 
+                                outcome="tarefas.xhtml?faces-redirect=true" 
+                                styleClass="icon-link" />
+                    </span>
+                </li>
+                <li>
+                    <span class="hoverable headerTitle right-recue">
+                        <h:graphicImage library="img" name="down.png" styleClass="icon" />
+                        <h:link value="recebidas" 
+                                outcome="minhas-tarefas.xhtml?faces-redirect=true"
+                                styleClass="icon-link" />
+                    </span>
+                </li>
+                <li>
+                    <span class="hoverable headerTitle right-recue">
+                        <h:graphicImage library="img" name="up.png" styleClass="icon" />
+                        <h:link value="enviadas"                                         
+                                outcome="tarefas-enviadas.xhtml?faces-redirect=true"
+                                styleClass="icon-link" />
+                    </span>
+                </li>
+                <li>
+                    <span class="hoverable headerTitle right-recue">
+                        <h:graphicImage library="img" name="chart.png" styleClass="icon" />
+                        <h:link value="gráfico" 
+                                style="color: #FF7F00!important"
+                                outcome="grafico-tarefas.xhtml?faces-redirect=true"
+                                styleClass="icon-link" />
+                    </span>
+                </li>
+            </ul>
+        </h:form>
+        <br />
+        
+        <p:lineChart id="linear" 
+                     value="#{chartBean.taskModel}" 
+                     legendPosition="e"  
+                     animate="true"
+                     title="Gráfico de Tarefas" 
+                     minY="0" maxY="10" 
+                     style="width: 770px"/>  
 
 
-            </ui:define>
+    </ui:define>
 
-        </ui:composition>
-    </body>
-</html>
+</ui:composition>

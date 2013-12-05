@@ -123,6 +123,19 @@ public class LoggBean implements Serializable {
         return completed;
     }
 
+    public Integer getCompletedTasks( User user ) {
+
+        Integer completed = 0;
+
+        for (Task t : user.getTasks()) {
+
+            if (t.getStatus().equals("concluída")) {
+                completed += 1;
+            }
+        }
+        return completed;
+    }
+    
     public void removeNot( Notification notif ) throws UnknownHostException{
         
         for( Notification f : sessionUser.getNotifications() ){

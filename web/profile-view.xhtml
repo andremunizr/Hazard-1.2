@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <body>
+
+        <ui:composition template="./temp/index.xhtml">
+
+            <ui:define name="content">
+
+                <h:graphicImage styleClass="avatar-img" 
+                                library="img" 
+                                name="maleIcon.png" 
+                                rendered="#{userBean.findOne( param.id ).sexo == 'masculino' and 
+                                            userBean.findOne( param.id ).image == null}" />
+
+                <h:graphicImage styleClass="avatar-img" 
+                                library="img" 
+                                name="femaleIcon.png" 
+                                rendered="#{userBean.findOne( param.id ).sexo == 'feminino' and 
+                                            userBean.findOne( param.id ).image == null}" />
+
+                <h:graphicImage styleClass="avatar-img" 
+                                library="avImg" 
+                                name="#{userBean.findOne( param.id ).image}" 
+                                rendered="#{userBean.findOne( param.id ).image != null}" />   
+
+                <article class="profile-info-cube">
+                    <strong>
+                        <h:outputText value="#{userBean.findOne( param.id ).name}" />
+                    </strong>
+                </article>
+                <article class="profile-info-cube profile-info-detail">
+                    <h:outputText value="#{userBean.findOne( param.id ).employ}" />
+                </article>
+                <article class="profile-info-cube profile-info-detail">
+                    <h:outputText value="#{userBean.findOne( param.id ).company}" />
+                </article>
+                <div class="about">
+                    <span class="headerTitle">Sobre</span>
+                    <p>
+                        <h:outputText value="#{userBean.findOne( param.id ).about}" />
+                    </p>
+                </div>
+                <div class="profile-info-bar">
+                    <span class="span-info-bar">
+                        <strong>tarefas completas:</strong> 
+                        <h:outputText value=" #{loggBean.getCompletedTasks( userBean.findOne( param.id ) )}" />
+                    </span> |
+                    <span class="span-info-bar">
+                        <strong>insígnias:</strong> 
+                        <h:outputText value=" #{userBean.findOne( param.id ).badges.size()}" />
+                    </span>
+                </div>
+                <div class="badges-container">
+
+                    <br />
+                    <span class="headerTitle">
+                        <h:outputText value="Insígnias" 
+                                      rendered="#{userBean.findOne( param.id ).badges.size() gt 0}" />
+                    </span>
+                    <br />
+                    <br />
+
+                    <ui:repeat value="#{userBean.findOne( param.id ).badges}" var="badge">
+                        <div class="badges-face">
+                            <h:graphicImage library="avImg" 
+                                            name="#{badge.image}" 
+                                            title="#{badge.name}" />
+                        </div>
+                    </ui:repeat>
+                </div>
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

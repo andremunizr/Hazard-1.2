@@ -80,7 +80,8 @@
 
                     <br />
                     <span class="headerTitle">
-                        <h:outputText value="Insígnias" />
+                        <h:outputText value="Insígnias"
+                                      rendered="#{loggBean.sessionUser.badges.size() gt 0}"/>
                     </span>
                     <br />
                     <br />
