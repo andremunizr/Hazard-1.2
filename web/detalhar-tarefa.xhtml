@@ -13,7 +13,7 @@
             <ui:define name="content">                
                 <h:form styleClass="underline">
                     <ul class="menuUl">                        
-                        <li>
+                       <li>
                             <span class="hoverable headerTitle right-recue">
                                 <h:graphicImage library="img" name="plus.png" styleClass="icon" />
                                 <h:link value="nova" 
@@ -34,6 +34,14 @@
                                 <h:graphicImage library="img" name="up.png" styleClass="icon" />
                                 <h:link value="enviadas" 
                                         outcome="tarefas-enviadas.xhtml?faces-redirect=true"
+                                        styleClass="icon-link" />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="hoverable headerTitle right-recue">
+                                <h:graphicImage library="img" name="chart.png" styleClass="icon" />
+                                <h:link value="gráfico" 
+                                        outcome="grafico-tarefas.xhtml?faces-redirect=true"
                                         styleClass="icon-link" />
                             </span>
                         </li>

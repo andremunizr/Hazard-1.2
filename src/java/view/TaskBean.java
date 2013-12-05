@@ -130,10 +130,7 @@ public class TaskBean {
             controller.saveDocument( User.class, responsable );
         }
         
-        if( testFifthTask( uTask )){    
-            
-            System.out.println("Recebendo a fifth.......");
-            
+        if( testFifthTask( uTask ) ){                
             buildNotification( BadgeEnum.FIFTH_TASK, id );
             logBean.getSessionUser().getNotifications().add( taskNotification );
             notBean.setNotification( taskNotification );
