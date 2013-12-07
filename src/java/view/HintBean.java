@@ -3,9 +3,9 @@ package view;
 import controller.MainController;
 import java.net.UnknownHostException;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import model.Hint;
 
@@ -22,11 +22,10 @@ public class HintBean {
     @EJB
     private MainController controller;
     
-    public HintBean() {
-    }
+    @Inject
+    private LoggBean logBean;
     
-    @PostConstruct
-    public void initializer() {
+    public HintBean() {
         hint = new Hint();
     }
 
@@ -43,7 +42,9 @@ public class HintBean {
     }
     
     public void save() throws UnknownHostException {
-        System.out.println( "Salvar dica: " + hint );
-        // controller.saveDocument( Hint.class, hint );
+        
+        hint.setAuthorId( logBean.getSessionUser().getId() );
+        
+        controller.saveDocument( Hint.class, hint );
     }
 }

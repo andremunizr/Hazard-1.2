@@ -222,29 +222,14 @@
                             <h:form>
                                 <p:inputText size="80" styleClass="input-standard" />
                                 <h:commandButton styleClass="action-button search-button" value="pesquisar"/>
-                                <div class="titles voce-sabia">Você sabia?</div>
+                                <div class="titles voce-sabia">
+                                    <h:commandLink value="Você sabia?" 
+                                           action="dicas.xhtml?faces-redirect=true" />
+                                </div>
                                 <div class="hint-container">
-                                    <div class="hint-box">
-                                        Na Argélia o sol é visto com os olhos, segundo estudos.
-                                    </div>
-                                    <div class="hint-box">
-                                        A cada 60 segundos na África se passa 1 minuto.
-                                    </div>
-                                    <div class="hint-box">
-                                        Jegues não conseguem cantar a 2ª parte de 'Faroeste Caboclo'.
-                                    </div>
-                                    <div class="hint-box">
-                                        Pesquisas apontam que as abelhas macho se chamam zangões.
-                                    </div>
-                                    <div class="hint-box">
-                                        O homem mais alto do mundo tem duas pernas.
-                                    </div>
-                                    <div class="hint-box">
-                                        Se você ir à feira e comer 2 pastéis, você terá que pagar por eles.
-                                    </div>
-                                    <div class="hint-box">
-                                        Bla bla bla bla bla bla bla bla bla bla bla bla
-                                    </div>
+                                    <ui:repeat value="#{hintBean.findAll()}" var="hint">
+                                        <div class="hint-box">#{hint.text}</div>
+                                    </ui:repeat>
                                 </div>
                             </h:form>
                         </div>

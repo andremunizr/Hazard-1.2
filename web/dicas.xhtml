@@ -32,13 +32,8 @@
                             <h:outputLabel value="Título: " />
                             <p:inputText value="#{hintBean.hint.title}" />
                             
-                            <h:outputLabel value="Autor: " />
-                            <p:selectOneMenu value="#{hintBean.hint.authorId}">
-                                <f:selectItems value="#{userBean.users}" var="user" itemLabel="#{user.name}" itemValue="#{user.id}" />
-                            </p:selectOneMenu>
-                            
                             <h:outputLabel value="Texto:" />
-                            <p:inputTextarea value="#{hintBean.hint.text}" />
+                            <p:inputTextarea value="#{hintBean.hint.text}" cols="40" rows="5" />
 
                             <p:commandButton action="#{hintBean.save()}"
                                              styleClass="action-button search-button" 
