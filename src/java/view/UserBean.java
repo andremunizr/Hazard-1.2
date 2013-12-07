@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import model.Badge;
 import model.User;
 
 @Named(value = "userBean")
@@ -85,5 +86,25 @@ public class UserBean {
     
     public User findOne( String objectId ) throws UnknownHostException{
         return (User) controller.findOne( User.class, objectId );
+    }    
+    
+    public String getMembersThatAcquiredBadge( String badge ) throws UnknownHostException{
+        
+        int members = 0;
+        
+        for( User u : getUsers() ){            
+            for( Badge b : u.getBadges() ){
+                
+                if( b.getName().equals( badge ) ){
+                    
+                    System.out.println("Insígnia " + badge + ", o " + u.getName() + " tem.");
+                    
+                    members += 1;
+                }                
+            }            
+        }
+        
+        return members != 1 ? members + " membros conquistaram"
+                            : "1 membro conquistou";
     }    
 }

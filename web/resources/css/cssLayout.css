@@ -551,6 +551,7 @@
     height: 40px;    
     border-radius: 3px;
     vertical-align: middle;
+    margin-left: 3px;
 }
 
 .task-list-span, .project-list-span{
@@ -879,6 +880,17 @@
     margin-top: 30px;
 }
 
+.badgelist li{
+    display: block;
+    margin-right: 20px;
+    border: 1px solid #aaa;
+    overflow: hidden;
+    padding: 10px;
+    background-color: #fdfdfd;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 3px #ccc;
+}
+
 .badgeimg{
     width: 60px;
     vertical-align: top;
@@ -919,4 +931,9 @@
 
 .hover-white:hover{
     color: #fff!important;
+}
+
+.badgeInfo{
+    float: right;
+    color: #aaa;
 }

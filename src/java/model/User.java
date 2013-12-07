@@ -22,6 +22,7 @@ public class User{
     private String sexo;
     private Boolean haveFirstTaskComplete = false;
     private Boolean haveFifthTaskComplete = false;
+    private Boolean haveFirstTaskDesignate = false;
     private List<Badge> badges;
     private List<Task> tasks;
     private List<Notification> notifications;
@@ -96,6 +97,14 @@ public class User{
 
     public void setHaveFifthTaskComplete(Boolean haveFifthTaskComplete) {
         this.haveFifthTaskComplete = haveFifthTaskComplete;
+    }
+
+    public Boolean isHaveFirstTaskDesignate() {
+        return haveFirstTaskDesignate;
+    }
+
+    public void setHaveFirstTaskDesignate(Boolean haveFirstTaskDesignate) {
+        this.haveFirstTaskDesignate = haveFirstTaskDesignate;
     }
     
     public String getSexo() {

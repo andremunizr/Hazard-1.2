@@ -78,4 +78,5 @@ input[type="file"]{
 ul{
     list-style-type: none;
     padding: 0;
+    display: block;
 }

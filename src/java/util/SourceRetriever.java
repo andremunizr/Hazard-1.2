@@ -20,6 +20,10 @@ public class SourceRetriever {
         if( srcType == BadgeEnum.FIFTH_TASK )
             return BadgeEnum.FIFTH_TASK.getImage();
         
+        else
+        if( srcType == BadgeEnum.FIRST_DESIGNATE )
+            return BadgeEnum.FIRST_DESIGNATE.getImage();
+        
         return null;
     }
     
@@ -29,7 +33,8 @@ public class SourceRetriever {
             return Messenger.NOVA_TAREFA.getMsg();
         
         else
-        if( srcType == BadgeEnum.FIRST_TASK || srcType == BadgeEnum.FIFTH_TASK )
+        if( srcType == BadgeEnum.FIRST_TASK || srcType == BadgeEnum.FIFTH_TASK || 
+            srcType ==  BadgeEnum.FIRST_DESIGNATE  )
             return Messenger.NOVA_INSIGNIA.getMsg();
         
         return null;        
@@ -41,7 +46,8 @@ public class SourceRetriever {
             return Messenger.NOVA_TAREFA.getLink();
         
         else
-        if( srcType == BadgeEnum.FIRST_TASK || srcType == BadgeEnum.FIFTH_TASK )
+        if( srcType == BadgeEnum.FIRST_TASK || srcType == BadgeEnum.FIFTH_TASK ||
+            srcType == BadgeEnum.FIRST_DESIGNATE )
             return Messenger.NOVA_INSIGNIA.getLink();
         
         return null;

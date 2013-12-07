@@ -90,67 +90,85 @@ public class TaskBean {
     }
 
     public void save() throws UnknownHostException {
-        
+
         responsable = findResponsable(responsableId);
 
         buildTask("save");
         controller.saveDocument(Task.class, task);
 
-        buildNotification( NotificationSource.TASK, task.getId() );
-        
+        buildNotification(NotificationSource.TASK, task.getId());
+
         notBean.setNotification(taskNotification);
         notBean.save();
-        
+
         buildResponsable();
+
+        if ( !responsable.isHaveFirstTaskDesignate() ) {
+            responsable.setHaveFirstTaskDesignate(true);
+
+            Badge badge = new Badge(BadgeEnum.FIRST_DESIGNATE.getName(),
+                    BadgeEnum.FIRST_DESIGNATE.getImage(),
+                    BadgeEnum.FIRST_DESIGNATE.getDateAcquired());
+
+            logBean.getSessionUser().getBadges().add(badge);
+            controller.saveDocument(User.class, logBean.getSessionUser());
+            
+            buildNotification(BadgeEnum.FIRST_DESIGNATE, task.getId());
+            logBean.getSessionUser().getNotifications().add(taskNotification);
+            notBean.setNotification(taskNotification);
+            notBean.save();            
+        }
+
         controller.saveDocument(User.class, responsable);
 
         setTask(new Task());
     }
 
     public void edit(String id) throws UnknownHostException {
-        
-        Task uTask = (Task) controller.findOne( Task.class, id );
-        uTask.setStatus(task.getStatus());
-        
-        if( "concluída".equals( uTask.getStatus() )){
-            uTask.setCompleteDate( Calendar.getInstance().getTime() );
-        }
-        
-        responsable = findResponsable( uTask.getResponsableId() );
-        
-        if ( !("").equals( comment.getText() ) )
-            uTask.getComments().add( buildComment( comment.getText() ) );
 
-        if( testFirstTask( uTask )){      
-            buildNotification( BadgeEnum.FIRST_TASK, id );
-            logBean.getSessionUser().getNotifications().add( taskNotification );
-            notBean.setNotification( taskNotification );
-            notBean.save();
-            
-            controller.saveDocument( User.class, responsable );
+        Task uTask = (Task) controller.findOne(Task.class, id);
+        uTask.setStatus(task.getStatus());
+
+        if ("concluída".equals(uTask.getStatus())) {
+            uTask.setCompleteDate(Calendar.getInstance().getTime());
         }
-        
-        if( testFifthTask( uTask ) ){                
-            buildNotification( BadgeEnum.FIFTH_TASK, id );
-            logBean.getSessionUser().getNotifications().add( taskNotification );
-            notBean.setNotification( taskNotification );
-            notBean.save();
-            
-            controller.saveDocument( User.class, responsable );
+
+        responsable = findResponsable(uTask.getResponsableId());
+
+        if (!("").equals(comment.getText())) {
+            uTask.getComments().add(buildComment(comment.getText()));
         }
-        
-        for (Task t : logBean.getSessionUser().getTasks()){
+
+        if (testFirstTask(uTask)) {
+            buildNotification(BadgeEnum.FIRST_TASK, id);
+            logBean.getSessionUser().getNotifications().add(taskNotification);
+            notBean.setNotification(taskNotification);
+            notBean.save();
+
+            controller.saveDocument(User.class, responsable);
+        }
+
+        if (testFifthTask(uTask)) {
+            buildNotification(BadgeEnum.FIFTH_TASK, id);
+            logBean.getSessionUser().getNotifications().add(taskNotification);
+            notBean.setNotification(taskNotification);
+            notBean.save();
+
+            controller.saveDocument(User.class, responsable);
+        }
+
+        for (Task t : logBean.getSessionUser().getTasks()) {
 
             if (t.getId().equals(uTask.getId())) {
                 t.setStatus(task.getStatus());
-                t.getComments().add( buildComment( comment.getText() ) );
+                t.getComments().add(buildComment(comment.getText()));
                 break;
             }
         }
         controller.saveDocument(Task.class, uTask);
 
         try {
-            controller.saveDocument( User.class, logBean.getSessionUser() );
+            controller.saveDocument(User.class, logBean.getSessionUser());
         } catch (EJBException e) {
             System.out.println("Erro ao persistir objeto.");
             System.out.println(e.getMessage());
@@ -160,55 +178,60 @@ public class TaskBean {
     public boolean testFirstTask(Task testTask) throws UnknownHostException {
 
         Date today = Calendar.getInstance().getTime();
-                
-        if ( testTask.getStatus().equals("concluída") ){
-            
-            if ( !logBean.getSessionUser().getHaveFirstTaskComplete() ){
-                
-                if ( testTask.getFinishDate().after( today ) ){
-                    
-                    logBean.getSessionUser().setHaveFirstTaskComplete( true );
-                    
-                    Badge badge = new Badge( BadgeEnum.FIRST_TASK.getName(),
-                                             BadgeEnum.FIRST_TASK.getImage(),
-                                             BadgeEnum.FIRST_TASK.getDateAcquired());
 
-                    logBean.getSessionUser().getBadges().add( badge );                    
+        if (testTask.getStatus().equals("concluída")) {
+
+            if (!logBean.getSessionUser().getHaveFirstTaskComplete()) {
+
+                if (testTask.getFinishDate().after(today)) {
+
+                    logBean.getSessionUser().setHaveFirstTaskComplete(true);
+
+                    Badge badge = new Badge(BadgeEnum.FIRST_TASK.getName(),
+                            BadgeEnum.FIRST_TASK.getImage(),
+                            BadgeEnum.FIRST_TASK.getDateAcquired());
+
+                    logBean.getSessionUser().getBadges().add(badge);
                     return true;
                 }
-            }            
-        }        
+            }
+        }
         return false;
     }
-    
+
     public boolean testFifthTask(Task testTask) throws UnknownHostException {
 
-        if( logBean.getSessionUser().getTasks().size() < 5 ) return false;        
+        if (logBean.getSessionUser().getTasks().size() < 5) {
+            return false;
+        }
         Date today = Calendar.getInstance().getTime();
-                
-        if ( testTask.getStatus().equals("concluída") ){            
-            if ( !logBean.getSessionUser().getHaveFifthTaskComplete() ){
-                
+
+        if (testTask.getStatus().equals("concluída")) {
+            if (!logBean.getSessionUser().getHaveFifthTaskComplete()) {
+
                 int complete = 0;
-                for( Task t : logBean.getSessionUser().getTasks() ){
-                    if( "concluída".equals( t.getStatus() ) ) complete += 1;
+                for (Task t : logBean.getSessionUser().getTasks()) {
+                    if ("concluída".equals(t.getStatus())) {
+                        complete += 1;
+                    }
                 }
-                
-                if( complete >= 5 ){
-                    if ( testTask.getFinishDate().after( today ) ){
-                        
-                        logBean.getSessionUser().setHaveFifthTaskComplete( true );
 
-                        Badge badge = new Badge( BadgeEnum.FIFTH_TASK.getName(),
-                                                 BadgeEnum.FIFTH_TASK.getImage(),
-                                                 BadgeEnum.FIFTH_TASK.getDateAcquired());
+                if (complete >= 5) {
+                                        
+                    if (testTask.getFinishDate().after(today)) {
 
-                        logBean.getSessionUser().getBadges().add( badge );                    
+                        logBean.getSessionUser().setHaveFifthTaskComplete(true);
+
+                        Badge badge = new Badge(BadgeEnum.FIFTH_TASK.getName(),
+                                BadgeEnum.FIFTH_TASK.getImage(),
+                                BadgeEnum.FIFTH_TASK.getDateAcquired());
+
+                        logBean.getSessionUser().getBadges().add(badge);
                         return true;
                     }
                 }
-            }            
-        }        
+            }
+        }
         return false;
     }
 
@@ -216,20 +239,21 @@ public class TaskBean {
         return (User) controller.findOne(User.class, id);
     }
 
-    public String buildLink(Enum srcType, String id){
-        
-        String base = SourceRetriever.sourceLink( srcType );
-                        
-        if( srcType == NotificationSource.TASK )
+    public String buildLink(Enum srcType, String id) {
+
+        String base = SourceRetriever.sourceLink(srcType);
+
+        if (srcType == NotificationSource.TASK) {
             return base + "?faces-redirect=true&id=" + id;
-        
+        }
+
         return base + "?faces-redirect=true";
     }
 
     private void buildTask(String type) {
         task.setAuthor(logBean.getSessionUser().getName());
         task.setAuthorId(logBean.getSessionUser().getId().toString());
-        task.setResponsableId( responsableId );
+        task.setResponsableId(responsableId);
 
         if (!type.equals("save")) {
             if (comment != null) {
@@ -239,21 +263,22 @@ public class TaskBean {
             }
         }
     }
-     
-    private void buildNotification( Enum srcType, String id ) throws UnknownHostException {
-                
-        taskNotification = new Notification( Calendar.getInstance().getTime() );
+
+    private void buildNotification(Enum srcType, String id) throws UnknownHostException {
+
+        taskNotification = new Notification(Calendar.getInstance().getTime());
         String srcPic = SourceRetriever.sourcePic(srcType, task.getAuthorId(), controller);
-        
-        if (srcPic != null)
+
+        if (srcPic != null) {
             taskNotification.setPicture(srcPic);
-        
-        taskNotification.setText( SourceRetriever.sourceText( srcType ));
-        taskNotification.setSourceId( task.getAuthorId() );
-        taskNotification.setSourceType( srcType.toString() );
-        
-        String link = buildLink( srcType , id );        
-        taskNotification.setLink(link);    
+        }
+
+        taskNotification.setText(SourceRetriever.sourceText(srcType));
+        taskNotification.setSourceId(task.getAuthorId());
+        taskNotification.setSourceType(srcType.toString());
+
+        String link = buildLink(srcType, id);
+        taskNotification.setLink(link);
     }
 
     private Comment buildComment(String text) {
@@ -268,14 +293,14 @@ public class TaskBean {
         return cmt;
     }
 
-    private void buildResponsable() {                
+    private void buildResponsable() {
         responsable.getNotifications().add(taskNotification);
         responsable.getTasks().add(task);
     }
-    
-    public List<Task> sentList( User user ) throws UnknownHostException{
-        
-        return (List<Task>) (List<?>) controller.getDocuments( Task.class, "authorId", user.getId() );
+
+    public List<Task> sentList(User user) throws UnknownHostException {
+
+        return (List<Task>) (List<?>) controller.getDocuments(Task.class, "authorId", user.getId());
     }
-    
+
 }

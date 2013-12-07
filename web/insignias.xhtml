@@ -25,6 +25,11 @@
                                 Conquistada ao se completar a primeira tarefa.
                             </span>
                         </section>
+                        
+                        <section class="badgeInfo">
+                            <h:outputText value="#{userBean.getMembersThatAcquiredBadge( 'Primeira Tarefa' )}" />
+                        </section>
+                        
                     </li>
                     
                     <li>
@@ -37,6 +42,28 @@
                                 Conquistada ao se completar 5 tarefas.
                             </span>
                         </section>
+                        
+                        <section class="badgeInfo">
+                            <h:outputText value="#{userBean.getMembersThatAcquiredBadge( 'Quinta Tarefa' )}" />
+                        </section>
+                        
+                    </li>
+                    
+                    <li>
+                        <h:graphicImage library="avImg" 
+                                        styleClass="badgeimg"
+                                        name="germany-badge.png" />
+                        <section class="badgetext">
+                            <span class="badgetitle">Insígnia da Alemanha</span><br/>
+                            <span class="badgedesc">
+                                Conquistada ao designar a primeira tarefa.
+                            </span>
+                        </section>
+                        
+                        <section class="badgeInfo">
+                            <h:outputText value="#{userBean.getMembersThatAcquiredBadge( 'Primeira Tarefa Designada' )}" />
+                        </section>
+                        
                     </li>
                     
                 </ul>
