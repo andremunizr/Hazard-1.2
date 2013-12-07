@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <body>
 
         <ui:composition template="./temp/index.xhtml">
@@ -34,6 +35,8 @@
                         <section class="project-list-span desc-project">
                             <h:form>
                                 <h:link outcome="detalhar-projeto.xhtml" value="#{project.name}">
+                                    <f:param name="faces-redirect" value="true" />
+                                    <f:param name="id" value="#{project.id}" />
                                 </h:link>
                             </h:form>
                         </section>
@@ -42,7 +45,7 @@
                 
                 <script>
                     document.title = 'Meus Projetos';
-                </script>  
+                </script>
             </ui:define>
 
         </ui:composition>

@@ -5,18 +5,23 @@ import java.net.UnknownHostException;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.faces.bean.ViewScoped;
 import model.Project;
+import model.User;
 
 @Named(value = "projectBean")
-@ViewScoped
+@RequestScoped
 public class ProjectBean {
     
     @EJB
     private MainController controller;
     private Project project;
     private List<Project> availableProjects;
+    
+    @Inject
+    private LoggBean logBean;
     
     @PostConstruct
     public void initializer() throws UnknownHostException {
@@ -45,15 +50,22 @@ public class ProjectBean {
         this.availableProjects = availableProjects;
     }
     
-    public void save() throws UnknownHostException {
+    public String save() throws UnknownHostException {
         
         if( project.getName() != null ) {
+            
+            logBean.getSessionUser().getProjects().add( project );
+            
+            controller.saveDocument( User.class, logBean.getSessionUser() );
             controller.saveDocument( Project.class, project );
         }
-        else {
-            System.out.println( "Nome do projeto está nulo." );
-        }
         
+        return "meus-projetos.xhtml";
+        
+    }
+    
+    public Project findOne( String id ) throws UnknownHostException {
+        return ( Project ) controller.findOne( Project.class, id );
     }
     
 }

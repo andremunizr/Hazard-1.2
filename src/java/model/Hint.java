@@ -11,8 +11,9 @@ public class Hint{
     
     @ObjectId 
     private String _id;
+    private String title;
     private String text;
-    private User author;
+    private String authorId;
     private Date date;
     
     public Hint(){}
@@ -25,6 +26,14 @@ public class Hint{
         this._id = _id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
     public String getText() {
         return text;
     }
@@ -33,12 +42,12 @@ public class Hint{
         this.text = text;
     }
 
-    public User getAuthor() {
-        return author;
+    public String getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setAuthorId(String author) {
+        this.authorId = author;
     }
 
     public Date getDate() {
