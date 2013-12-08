@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
     <body>
 
@@ -11,7 +10,7 @@
 
             <ui:define name="content">
 
-                <h:form>
+                <h:form class="underline">
                     <ul class="menuUl">                        
                         <li>
                             <span class="headerTitle">
@@ -26,30 +25,29 @@
                     </ul>
                 </h:form>
 
-                <div class="profile-edit-box">
-                    <span class="headerTitle edit-box-title">
-                        nova dica
-                    </span>
-                    <br /><br /><br />
-                    <h:form>
-                        <h:panelGrid columns="2">
-                            
-                            <h:outputLabel value="Título: " />
-                            <p:inputText value="#{hintBean.hint.title}" />
-                            
-                            <h:outputLabel value="Texto:" />
-                            <p:inputTextarea value="#{hintBean.hint.text}" cols="40" rows="5" />
-
-                            <p:commandButton action="#{hintBean.save()}"
-                                             styleClass="action-button search-button" 
-                                             value="salvar"
-                                             update="@form" />
-                        </h:panelGrid>
-                    </h:form>
-                </div>
+                <section class="advice-center">
+                    <h:outputText rendered="#{empty hintBean.hints}"
+                                  value="Nenhuma dica a ser exibida" />
+                </section>
+                
+                <ui:repeat value="#{hintBean.hints}" var="hint">
+                    <section class="projectItems">
+                        <section class="project-list-span desc-project">
+                            <h:form>
+                                <h:link outcome="detalhar-dica.xhtml" value="#{hint.title}">
+                                    <f:param name="faces-redirect" value="true" />
+                                    <f:param name="id" value="#{hint.id}" />
+                                </h:link>
+                            </h:form>
+                        </section>
+                    </section>
+                </ui:repeat>
+                
+                <script>
+                    document.title = 'Meus Projetos';
+                </script>
             </ui:define>
 
         </ui:composition>
-
     </body>
 </html>

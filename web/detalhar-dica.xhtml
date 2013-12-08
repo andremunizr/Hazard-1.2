@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./temp/index.xhtml">
+
+            <ui:define name="content">                
+                <h:form styleClass="underline">
+                    <ul class="menuUl">                        
+                        <li>
+                            <span class="headerTitle">
+                                <h:commandLink value="nova dica" action="dicas.xhtml" />
+                            </span>
+                        </li>
+                        <li>
+                            <span class="headerTitle">
+                                <h:commandLink value="todas as dica" action="todas-as-dicas.xhtml" />
+                            </span>
+                        </li>
+                    </ul>
+                </h:form>
+
+                <p class="headerTitle">
+                    detalhar dica
+                </p>
+
+                <p class="grey-text">
+                    #{hintBean.findOne( param.id ).title}
+                </p>
+                
+                <p>
+                    #{hintBean.findOne( param.id ).text}
+                </p>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

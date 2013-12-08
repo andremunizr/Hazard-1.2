@@ -227,7 +227,7 @@
                                            action="dicas.xhtml?faces-redirect=true" />
                                 </div>
                                 <div class="hint-container">
-                                    <ui:repeat value="#{hintBean.findAll()}" var="hint">
+                                    <ui:repeat value="#{hintBean.hints}" var="hint">
                                         <div class="hint-box">#{hint.text}</div>
                                     </ui:repeat>
                                 </div>
