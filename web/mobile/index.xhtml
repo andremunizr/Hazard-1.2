@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Mob Hazard</title>
+    </h:head>
+    <h:body>
+        <f:view
+            xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:f="http://java.sun.com/jsf/core"
+            xmlns:h="http://java.sun.com/jsf/html"
+            xmlns:ui="http://java.sun.com/jsf/facelets"
+            xmlns:p="http://primefaces.org/ui"
+            xmlns:pm="http://primefaces.org/mobile"        
+            contentType="text/html"
+            renderKitId="PRIMEFACES_MOBILE">
+
+            <pm:page title="Mob Hazard">
+                <pm:view id="main">
+                    <pm:header title="Mob Hazard" swatch="b" />
+
+                    <pm:content>
+                        <h:panelGrid columns="1" styleClass="ui-responsive">
+                            <p:outputPanel style="padding-right: 15px">                                                                      
+                                <p:dataList type="inset" styleClass="ui-li-custom">
+                                    <f:facet name="header">Opções</f:facet>
+                                    <f:attribute name="icon" value="false" />
+                                    <h:outputLink value="#tarefas">Tarefas</h:outputLink>
+                                    <h:outputLink value="#projetos">Projetos</h:outputLink>
+                                    <h:outputLink value="#dicas">Dicas</h:outputLink>
+                                    <h:outputLink value="#equipe">Equipe</h:outputLink>
+                                </p:dataList>
+                            </p:outputPanel>
+                        </h:panelGrid>
+                    </pm:content>
+                    <pm:footer>
+                        <h1 style="font-size: x-small">Mob Hazard</h1>         
+                        <h1 style="font-size: x-small">by Andrz and Dands</h1>
+                    </pm:footer>
+                </pm:view>
+                
+                <pm:view id="tarefas">
+                    <pm:header title="Tarefas">
+                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.back()"/></f:facet>
+                    </pm:header>
+                </pm:view>
+                
+                <pm:view id="projetos">
+                    <pm:header title="Projetos">
+                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.back()"/></f:facet>
+                    </pm:header>
+                </pm:view>
+                
+                <pm:view id="dicas">
+                    <pm:header title="Dicas">
+                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.back()"/></f:facet>
+                    </pm:header>
+                </pm:view>
+                
+                <pm:view id="equipe">
+                    <pm:header title="Equipe">
+                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.back()"/></f:facet>
+                    </pm:header>
+                </pm:view>
+            </pm:page>
+
+        </f:view>
+    </h:body>
+</html>
+
