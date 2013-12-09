@@ -937,3 +937,19 @@
     float: right;
     color: #aaa;
 }
+
+.welcome-index{
+    font-size: 20px;
+    color: #646461;
+    padding: 20px;
+}
+
+.hazard-welcome{
+    color: #d3d3d3;
+    text-shadow: 1px 1px 0px #444;
+}
+
+.mongo-img{
+    height: 100px;
+    
+}

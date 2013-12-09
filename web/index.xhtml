@@ -1,13 +1,34 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
     <body>
 
         <ui:composition template="./temp/index.xhtml">
 
             <ui:define name="content">
                 Hello, #{loggBean.sessionUser.name}!
+                
+                <section class="welcome-index">
+                    Bem vindo(a) ao gerenciador de tarefas
+                    <span class="hazard-welcome">Hazard</span>!
+                </section>
+                <br />
+                <br />
+                <br />
+                <br />
+                <p>Uma ferramenta alimentada por:</p>
+                
+                <h:graphicImage library="img" 
+                                name="mongo.png" 
+                                style="float: left; margin-left: 50px; margin-top: 10px;"
+                                styleClass="mongo-img" />
+                <h:graphicImage library="img" 
+                                style="float: right; margin-right: 50px; margin-top: 10px;"
+                                name="primefaces.png" 
+                                styleClass="mongo-img" />
+                
             </ui:define>
 
         </ui:composition>

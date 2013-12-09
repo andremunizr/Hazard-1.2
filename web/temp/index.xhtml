@@ -168,10 +168,11 @@
                         </h:form>
                     </div>
                     <div class="projBox" id="projBox"> 
-                        <section class="no-notif">
-                            <h:outputText value="Nenhum projeto" 
-                                          rendered="#{loggBean.sessionUser.projects.size() == 0}" />
-                        </section>
+                        <h:panelGroup rendered="#{loggBean.sessionUser.projects.size() == 0}">
+                            <section class="no-notif">
+                                <h:outputText value="Nenhum projeto"  />
+                            </section>
+                        </h:panelGroup>
                         <ul class="projList">
                             <ui:repeat value="#{projectBean.availableProjects}" var="project">
                                 <li>#{project.name}</li>
