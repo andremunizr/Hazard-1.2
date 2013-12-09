@@ -42,27 +42,52 @@
                 
                 <pm:view id="tarefas">
                     <pm:header title="Tarefas">
-                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.back()"/></f:facet>
+                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.history.back()"/></f:facet>
                     </pm:header>
+                    
+                    <pm:content>
+                        <p:dataList value="#{taskBean.tasks}" var="task">
+                            <h:outputText value="#{task.description}" />
+                        </p:dataList>
+                    </pm:content>
                 </pm:view>
                 
                 <pm:view id="projetos">
                     <pm:header title="Projetos">
-                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.back()"/></f:facet>
+                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.history.back()"/></f:facet>
                     </pm:header>
+                    
+                    <pm:content>
+                        <p:dataList value="#{projectBean.availableProjects}" var="project">
+                            <h:outputText value="#{project.name}" />
+                        </p:dataList>
+                    </pm:content>
                 </pm:view>
                 
                 <pm:view id="dicas">
                     <pm:header title="Dicas">
-                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.back()"/></f:facet>
+                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.history.back()"/></f:facet>
                     </pm:header>
+                    
+                    <pm:content>
+                        <p:dataList value="#{hintBean.hints}" var="hint">
+                            <h:outputText value="#{hint.title}" />
+                        </p:dataList>
+                    </pm:content>
                 </pm:view>
                 
                 <pm:view id="equipe">
                     <pm:header title="Equipe">
-                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.back()"/></f:facet>
+                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.history.back()"/></f:facet>
                     </pm:header>
+                    
+                    <pm:content>
+                        <p:dataList value="#{userBean.users}" var="user">
+                            <h:outputText value="#{user.name}" />
+                        </p:dataList>
+                    </pm:content>
                 </pm:view>
+
             </pm:page>
 
         </f:view>
