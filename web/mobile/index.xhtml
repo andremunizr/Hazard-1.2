@@ -18,7 +18,7 @@
 
             <pm:page title="Mob Hazard">
                 <pm:view id="main">
-                    <pm:header title="Mob Hazard" swatch="b" />
+                    <pm:header title="Mob Hazard" swatch="a" />
 
                     <pm:content>
                         <h:panelGrid columns="1" styleClass="ui-responsive">
@@ -26,10 +26,10 @@
                                 <p:dataList type="inset" styleClass="ui-li-custom">
                                     <f:facet name="header">Opções</f:facet>
                                     <f:attribute name="icon" value="false" />
-                                    <h:outputLink value="#tarefas">Tarefas</h:outputLink>
-                                    <h:outputLink value="#projetos">Projetos</h:outputLink>
-                                    <h:outputLink value="#dicas">Dicas</h:outputLink>
-                                    <h:outputLink value="#equipe">Equipe</h:outputLink>
+                                    <h:outputLink value="#tarefas?transition=pop">Tarefas</h:outputLink>
+                                    <h:outputLink value="#projetos?transition=pop">Projetos</h:outputLink>
+                                    <h:outputLink value="#dicas?transition=pop">Dicas</h:outputLink>
+                                    <h:outputLink value="#equipe?transition=pop">Equipe</h:outputLink>
                                 </p:dataList>
                             </p:outputPanel>
                         </h:panelGrid>
@@ -42,7 +42,7 @@
                 
                 <pm:view id="tarefas">
                     <pm:header title="Tarefas">
-                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.history.back()"/></f:facet>
+                        <f:facet name="left"><h:outputLink value="#main?transition=pop">Voltar</h:outputLink></f:facet>
                     </pm:header>
                     
                     <pm:content>
@@ -54,7 +54,7 @@
                 
                 <pm:view id="projetos">
                     <pm:header title="Projetos">
-                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.history.back()"/></f:facet>
+                        <f:facet name="left"><h:outputLink value="#main?transition=pop">Voltar</h:outputLink></f:facet>
                     </pm:header>
                     
                     <pm:content>
@@ -66,7 +66,7 @@
                 
                 <pm:view id="dicas">
                     <pm:header title="Dicas">
-                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.history.back()"/></f:facet>
+                        <f:facet name="left"><h:outputLink value="#main?transition=pop">Voltar</h:outputLink></f:facet>
                     </pm:header>
                     
                     <pm:content>
@@ -78,7 +78,7 @@
                 
                 <pm:view id="equipe">
                     <pm:header title="Equipe">
-                        <f:facet name="left"><p:button value="Voltar" icon="back" onclick="window.history.back()"/></f:facet>
+                        <f:facet name="left"><h:outputLink value="#main?transition=pop">Voltar</h:outputLink></f:facet>
                     </pm:header>
                     
                     <pm:content>
